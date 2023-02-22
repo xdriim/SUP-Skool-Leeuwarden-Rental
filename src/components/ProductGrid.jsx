@@ -1,5 +1,5 @@
 import { ProductCard } from "./ProductCard";
-import styles from "./ProductGrid.module.css";
+import style from "./ProductCard.module.css";
 import React, { useEffect, useState } from 'react';
 
 
@@ -13,14 +13,15 @@ export function ProductGrid() {
   }, []);
     
   return (
-    <section id="sup-first" className={styles.ProductGrid}>
+    <section id="sup-first">
         <div>
             <h3>SUP</h3>
-            <div class="flex">
+            <div className={style.productGrid}>
                 {data.map((product) => (
                     <ProductCard key={product.id} product={product} />
                 ))}
             </div>
+            <div></div>
         </div>
     </section>
   );

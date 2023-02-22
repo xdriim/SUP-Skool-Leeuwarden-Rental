@@ -1,28 +1,29 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import logo from '../images/SUP.png';
+import styles from "../css/style.css";
 
 export function GenerateHeader() {
     return(
-        <Fragment>
+        <header>
 
             {/* Here goes the header code vvvvvvvvvvv */}
-            <div className="flitem">
+            <div className={styles.flitem}>
                 <img src={ logo } alt="SUP logo" width="140px" height="auto"/>
             </div>
-            <div className="flitem">
+            <div className={styles.flitem}>
                 {/* <h1>&lt;Search bar here&gt;</h1> */}
                 <form action="">
                     <input type="search" placeholder='Search...' name='search' id='search' />
                 </form>
                 
             </div>
-            <div className="flitem">
-                <button className="btn"><i className="fa fa-home"></i> My profile</button>
+            <div className={styles.flitem}>
+                <button className={styles.btn}><i className="fa fa-home"></i> My profile</button>
             </div>
-            <div className="flitem">
-                <button className="btn"><i className="fa fa-shopping-cart"></i> Cart</button>
+            <div className={styles.flitem}>
+                <button className={styles.btn}><i className="fa fa-shopping-cart"></i> Cart</button>
             </div>
-        </Fragment>
+        </header>
     )
 }
 

@@ -1,0 +1,37 @@
+{
+  "my-profile-button": {
+    "en": "My profile",
+    "es": "Mi perfil",
+    "ca": "El meu perfil"
+  },
+
+  "cart-button": {
+    "en": "Cart",
+    "es": "Carrito",
+    "ca": "Carretó"
+  },
+
+  "terms-condition-statement": {
+    "en": "Terms and conditions and privacy statement",
+    "es": "Términos y condiciones de privacidad",
+    "ca": "Termes i condicions de privacitat"
+  },
+
+  "rental": {
+    "en": "rental",
+    "es": "renta",
+    "ca": "renda"
+  },
+
+  "search-placeholder": {
+    "en": "Search...",
+    "es": "Buscar...",
+    "ca": "Cerca..."
+  },
+
+  "no-javascript": {
+    "en": "You need to enable JavaScript to run this app.",
+    "es": "Necesitas activar JavaScript para ejecutar esta aplicación.",
+    "ca": "Necessites activar JavaScript per a executar aquesta aplicació."
+  }
+}

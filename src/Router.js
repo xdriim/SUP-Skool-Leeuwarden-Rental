@@ -10,24 +10,6 @@ import {Error} from './pages/Error';
 export function Routing(){
   return (
     <Router>
-      <div className="App">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/about">About</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact</Link>
-            </li>
-            <li>
-              <Link to="/productInfo">ProductInfo</Link>
-            </li>
-          </ul>
-        </nav>
-
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -35,7 +17,7 @@ export function Routing(){
           <Route path="/productInfo" element={<ProductInfo />} />
           <Route path='**' element={<Error />} />
         </Routes>
-      </div>
+      
       </Router>
   );
 };

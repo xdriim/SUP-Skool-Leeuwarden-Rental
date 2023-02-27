@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import styles from "../css/style.css";
 
 export function GenerateFooter() {

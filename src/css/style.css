@@ -1,5 +1,7 @@
 * {
     font-family: 'Exo', sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 header, footer {
@@ -15,12 +17,12 @@ header, footer {
 }
 
 header {
-    position: fixed;
+    position: relative;
     top: 0;
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     height: 10%;
 }

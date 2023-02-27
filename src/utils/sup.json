@@ -1,0 +1,51 @@
+[
+    {
+        "id" : 1,
+        "name" : "SUP Board",
+        "price" : 15.00,
+        "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2021/01/IMG-20200526-WA0013-300x300.jpg",
+        "type" : "sup"
+    },
+    {
+        "id" : 2,
+        "name" : "SUP board (gevorderde)",
+        "price" : 17.50,
+        "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2020/11/IMG_8961-300x300.jpg",
+        "type" : "sup"
+    },
+    {
+        "id" : 3,
+        "name" : "Tandem SUP",
+        "price" : 20.00,
+        "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2021/01/IMG-3315-300x300.jpg",
+        "type" : "sup"
+    },
+    {
+        "id" : 4,
+        "name" : "BIG SUP",
+        "price" : 50.00,
+        "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2021/01/IMG-4258-300x300.jpg",
+        "type" : "sup"
+    },
+    {
+        "id" : 5,
+        "name" : "1 persoons kano",
+        "price" : 15.00,
+        "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2020/11/1-pers-kano-300x300.jpg",
+        "type" : "canoe"
+    },
+    {
+        "id" : 6,
+        "name" : "1 persoons kano",
+        "price" : 20.00,
+        "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2021/01/3b810a50-4675-4582-8db5-a0f33a057c37-300x300.jpg",
+        "type" : "canoe"
+    },
+    {
+        "id" : 7,
+        "name" : "Clean-Up kano",
+        "price" : 5.00,
+        "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2021/01/Cleanup-300x300.jpg",
+        "type" : "canoe"
+    }
+]

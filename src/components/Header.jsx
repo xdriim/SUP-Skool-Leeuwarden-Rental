@@ -1,44 +1,40 @@
 import React from 'react';
 import logo from '../images/SUP.png';
-import styles from "../css/style.css";
-import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
-import { Home } from "./../pages/Home";
-import { ProductInfo } from "../pages/ProductInfo";
+import "./Header.module.css";
+import { Navbar, Nav, Form, FormControl, Button } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import '@fortawesome/fontawesome-free/css/all.css';
+import '@fortawesome/fontawesome-free/css/fontawesome.css';
+import '@fortawesome/fontawesome-free/css/solid.css';
+import '@fortawesome/fontawesome-free/css/regular.css';
+import '@fortawesome/fontawesome-free/css/brands.css';
+
+import { faUser } from '@fortawesome/free-regular-svg-icons';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 export function GenerateHeader() {
     return(
-        <BrowserRouter>
-            <header>
-                <div className={styles.flitem}>
-                    <Link to='/'>
-                        <img src={ logo } alt="SUP logo" width="140px" height="auto"/>
-                    </Link>
-                </div>
-                <div className={styles.flitem}>
-                    {/* <h1>&lt;Search bar here&gt;</h1> */}
-                    <form action="">
-                        <input type="search" placeholder='Search...' name='search' id='search' />
-                    </form>
-                    
-                </div>
-                <div className={styles.flitem}>
-                    <Link to='/myProfile'>
-                        <button className={styles.btn}><i className="fa fa-home"></i> My profile</button>
-                    </Link>
-                </div>
-                <div className={styles.flitem}>
-                    <Link to='/product'>
-                        <button className={styles.btn}><i className="fa fa-shopping-cart"></i> Cart</button>
-                    </Link>
-                </div>
-            </header>
-
-            <Routes>
-                <Route path='/' element={Home} />
-                <Route path='/product' element={ProductInfo} />
-            </Routes>
-            
-        </BrowserRouter>
+        
+            <Navbar bg="light" expand="lg">
+            <Navbar.Brand href="/"><img src={logo} alt="Logo" /></Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+            <Form inline className="ml-auto">
+                <FormControl type="text" placeholder="Buscar" className="mr-sm-2" />
+                <Button pill variant="outline-success">Buscar</Button>
+            </Form>
+            <Nav className="ml-auto">
+                <Nav.Link href="/about">
+                <FontAwesomeIcon icon={faUser} />
+                </Nav.Link>
+                <Nav.Link href="#">
+                <FontAwesomeIcon icon={faShoppingCart} />
+                </Nav.Link>
+            </Nav>
+            </Navbar.Collapse>
+        </Navbar>
+      
     )
 }
 

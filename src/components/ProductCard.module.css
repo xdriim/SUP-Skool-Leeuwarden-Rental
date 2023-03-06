@@ -22,11 +22,11 @@
     color: lightblue;
 }
 
-#sup-first .slider-sup div img{
+.slider-sup div img{
     border-radius: 8px;
 }
 
-#sup-first .slider-sup div:last-child{
+.slider-sup div:last-child{
     border: 1px solid lightblue;
     display: flex;
     justify-content: center;
@@ -34,7 +34,7 @@
     color: lightblue;
 }
 
-#sup-first .slider-sup div:last-child:hover{
+.slider-sup div:last-child:hover{
     cursor: pointer;
 }
 

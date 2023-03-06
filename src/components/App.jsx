@@ -1,4 +1,3 @@
-import { ProductGrid } from "./ProductGrid";
 // import style from "./App.module.css";
 import GenerateHeader from "./Header";
 import GenerateFooter from "./Footer";

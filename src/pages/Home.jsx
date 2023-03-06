@@ -1,7 +1,7 @@
+import { ProductGrid } from "./../components/ProductGrid";
+
 export function Home() {
   return (
-    <div>
-        HOME
-    </div>
+    <ProductGrid />
   );
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import {Home} from './pages/Home';
 import {ProductInfo} from './pages/ProductInfo';
 import {Contact} from './pages/Contact';
@@ -15,7 +15,7 @@ export function Routing(){
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/productInfo" element={<ProductInfo />} />
-          <Route path='**' element={<Error />} />
+          <Route path='*/*' element={<Error />} />
         </Routes>
       
       </Router>

@@ -1,7 +1,7 @@
 export function Error() {
     return (
       <div>
-          Error
+          Error {/* Tener en cuenta los códigos de error de la API */}
       </div>
     );
   }

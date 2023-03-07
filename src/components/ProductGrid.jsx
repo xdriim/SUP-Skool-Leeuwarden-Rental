@@ -20,6 +20,7 @@ const supArray = sups.filter((product) => product.id < 3);
 console.log(supArray);
     
   return (
+    <div>
     <Container>
         <Row>
           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
@@ -39,5 +40,6 @@ console.log(supArray);
           </Col>
         </Row>
     </Container>
+    </div>
   );
 }

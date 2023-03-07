@@ -5,6 +5,7 @@ import {ProductInfo} from './pages/ProductInfo';
 import {Contact} from './pages/Contact';
 import {About} from './pages/About';
 import {Error} from './pages/Error';
+import {AutoLayoutExample} from './pages/Layout';
 
 
 export function Routing(){
@@ -15,6 +16,7 @@ export function Routing(){
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/productInfo" element={<ProductInfo />} />
+          <Route path="/AutoLayoutExample" element={<AutoLayoutExample />} />
           <Route path='*/*' element={<Error />} />
         </Routes>
       

@@ -1,26 +1,26 @@
 import { ProductCard } from "./ProductCard";
-import { Container, Row, Col } from 'react-bootstrap';
-import style from "./ProductCard.module.css";
-import React from 'react';
+import { Container, Row, Col, Card } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
 // , { useEffect, useState }
 import sups from "../utils/sup.json";
-
+import "./ProductGrid.module.css";
 
 
 export function ProductGrid() {
-//     const [data, setData] = useState([]);
+    const [data, setData] = useState([]);
 
-//     useEffect(() => {
-//     fetch('http://monet.cat:8080/')
-//       .then(response => response.json())
-//       .then(data => setData(data));
-//   }, []);
+    useEffect(() => {
+    fetch('https://jcibravo.neocities.org/api/supskoolleuwarden.json')
+      .then(response => response.json())
+      .then(data => setData(data));
+  }, []);
 
-const supArray = sups.filter((product) => product.id < 3);
-console.log(supArray);
+  console.log(data);
+  
+const supArray = sups.filter((product) => product.id <= 3);
+const canoesArray = sups.filter((product) => product.id > 3 && product.id <= 6);
     
   return (
-    <div>
     <Container>
         <Row>
           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
@@ -28,18 +28,40 @@ console.log(supArray);
           </Col>
           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
             <Row>
-            {supArray.map((product) => (
-                <Col xs={12} sm={6} md={6} lg={3} xl={3}>
-                  <ProductCard key={product.id} product={product} />
-                </Col>  
-            ))}
-                  <Col xs={12} sm={6} md={6} lg={3} xl={3}>
-                    <article className={style.moreCards}>...</article>
-                  </Col>
+              {supArray.map((product) => (
+                    <ProductCard key={product.id} id={product.id} product={product} />
+              ))}
+                <Col xs={12} sm={12} md={6} lg={6} xl={3} className="d-flex align-items-center justify-content-center" style={{ width: '16rem', height: '26rem' }}>
+                  <Card className="text-center" >
+                    <Card.Body>
+                      <Card.Title>...</Card.Title>
+                      <Card.Text>MORE</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+            </Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <h3>Canoes</h3>
+          </Col>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <Row>
+              {canoesArray.map((product) => (
+                  <ProductCard key={product.id} id={product.id} product={product} />
+              ))}
+                <Col xs={12} sm={12} md={6} lg={6} xl={3} className="d-flex align-items-center justify-content-center" style={{ width: '16rem', height: '26rem' }}>
+                  <Card className="text-center" >
+                    <Card.Body>
+                      <Card.Title>...</Card.Title>
+                      <Card.Text>MORE</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
             </Row>
           </Col>
         </Row>
     </Container>
-    </div>
   );
 }

@@ -1,4 +1,4 @@
-const API = "http://monet.cat:8080/";
+const API = "https://jcibravo.neocities.org/api/supskoolleuwarden.json";
 
 export function get(path) {
   return fetch(API + path, {

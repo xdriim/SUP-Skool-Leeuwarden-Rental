@@ -1,4 +1,5 @@
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 export function PreAuth() {
 
@@ -13,7 +14,7 @@ export function PreAuth() {
             <Row className='mb-5'>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
                         <Button style={{ background: '#DEEDFF', color: '#305090', width: '15rem', marginBottom: '20px' }}>
-                            Log in
+                            <Link to={'/login'}>Log in</Link>
                         </Button>
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
@@ -24,7 +25,12 @@ export function PreAuth() {
             </Row>
             <Row>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
-                    <h3>Still don't have an account? <span style={{ fontWeight: 'bold' }}>Create one!</span></h3>
+                    <h3>Still don't have an account?
+                        <Link to={'/register'}>
+                            <span style={{ fontWeight: 'bold' }}> Create one!</span>
+                        </Link>
+                        
+                    </h3>
                 </Col>
             </Row>
         </Container>

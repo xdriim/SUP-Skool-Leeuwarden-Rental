@@ -20,7 +20,7 @@ export function GenerateHeader() {
                         <Nav.Link href="/preauth">
                             <FontAwesomeIcon icon={faUser} />
                         </Nav.Link>
-                        <Nav.Link href="#">
+                        <Nav.Link href="/cart">
                             <FontAwesomeIcon icon={faShoppingCart} />
                         </Nav.Link>
                     </Nav> 

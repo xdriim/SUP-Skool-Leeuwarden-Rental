@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import sups from "../utils/sup.json";
 
 
-export function ListProducts() {
+export function ListProducts({products}) {
     const [data, setData] = useState([]);
 
     useEffect(() => {
@@ -22,9 +22,6 @@ const canoesArray = sups.filter((product) => product.id > 3 && product.id <= 6);
   return (
     <Container>
         <Row>
-          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-            <h3>Canoes</h3>
-          </Col>
           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
             <Row>
               {canoesArray.map((product) => (

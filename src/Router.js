@@ -20,7 +20,7 @@ export function Routing(){
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/productInfo/:productId" element={<ProductInfo />} />
-          <Route path="/ListProducts/:products" element={<ListProducts />} />
+          <Route path="/listProducts/:products" element={<ListProducts />} />
           <Route path='/preAuth' element={<PreAuth />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />

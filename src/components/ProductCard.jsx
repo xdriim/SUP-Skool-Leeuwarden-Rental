@@ -1,5 +1,4 @@
 import { Card, Button, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router';
 import style from "./ProductCard.module.css";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';

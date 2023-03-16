@@ -1,7 +1,7 @@
 import React from 'react';
-import logo from '../images/SUP.png';
+import logo from './../../images/SUP.png';
 import "./Header.module.css";
-import { SearchBar } from './SearchBar';
+import { SearchBar } from './../SearchBar';
 
 import { Navbar, Nav, Container } from 'react-bootstrap';
 

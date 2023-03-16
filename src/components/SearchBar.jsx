@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate  } from "react-router-dom";
 import { InputGroup, FormControl, Button, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -7,6 +8,7 @@ import sups from "../utils/sup.json";
 export function SearchBar() {
   
   const [searchTerm, setSearchTerm] = useState('');
+  // const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -24,8 +26,8 @@ export function SearchBar() {
     // Handle search logic here
     // Redireccionar a listProducts aquí??? O hacer href directo a una página
     // Solución paso solo searchTerm.toLowerCase() y vuelvo hacer lo del filtrat en listProducts
-    // window.location.href nooo, utilizar react router 
-    
+    // window.location.href nooo, utilizar react router
+    // navigate('/listProducts'+searchTerm); 
   };
 
   return (
@@ -33,7 +35,7 @@ export function SearchBar() {
       {/* hacer responsive de este width */}
         <InputGroup style={{ width: '500px' }}>
           <FormControl type="text" placeholder="Search" aria-label="Search" value={searchTerm} onChange={handleInputChange} />
-          <Button href={'/listProducts'+searchTerm} variant="light" type="submit" id="button-addon2" onClick={handleSubmit}><FontAwesomeIcon icon={faSearch} className="text-muted" /></Button>
+          <Button variant="light" type="submit" id="button-addon2" onClick={handleSubmit}><FontAwesomeIcon icon={faSearch} className="text-muted" /></Button>
           <Dropdown.Menu show={filterData().length > 0} style={{ width: '462px' }} className="text-center">
             {filterData().map(item => (
               <Dropdown.Item href={'/productInfo/'+item.id} key={item.id}>{item.name}</Dropdown.Item>

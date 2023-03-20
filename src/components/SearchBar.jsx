@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate  } from "react-router-dom";
+import { useNavigate, Navigate  } from "react-router-dom";
 import { InputGroup, FormControl, Button, Dropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -7,8 +7,10 @@ import sups from "../utils/sup.json";
 
 export function SearchBar() {
   
+  const [busqueda, setBusqueda] = useState(null);
+
   const [searchTerm, setSearchTerm] = useState('');
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     setSearchTerm(event.target.value);
@@ -24,10 +26,8 @@ export function SearchBar() {
     event.preventDefault();
     console.log('Search term:', searchTerm);
     // Handle search logic here
-    // Redireccionar a listProducts aquí??? O hacer href directo a una página
-    // Solución paso solo searchTerm.toLowerCase() y vuelvo hacer lo del filtrat en listProducts
-    // window.location.href nooo, utilizar react router
-    // navigate('/listProducts'+searchTerm); 
+    // FALTA CONDICIÓN PARA NO REDIRIGIR, Y HACER TIPO ALERT DE INPUT VACIO
+    navigate('/listProducts/'+searchTerm); 
   };
 
   return (
@@ -42,7 +42,6 @@ export function SearchBar() {
             ))}
           </Dropdown.Menu>
         </InputGroup>
-      
     </div>
   );
 }

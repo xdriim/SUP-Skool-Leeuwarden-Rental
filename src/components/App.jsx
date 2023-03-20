@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import {Home} from './../pages/Home';
 import {ProductInfo} from './../pages/ProductInfo';
 import {Contact} from './../pages/Contact';
@@ -13,20 +13,18 @@ import { ListProducts } from './../pages/ListProducts';
 
 export function App() {
   return (
-    <Router>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/productInfo/:productId" element={<ProductInfo />} />
-          <Route path="/listProducts/:products" element={<ListProducts />} />
+          <Route path="/listProducts/:productsSearch" element={<ListProducts />} />
           <Route path='/preAuth' element={<PreAuth />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
           <Route path='/cart' element={<Cart />} />
           <Route path='*' element={<Error />} />
         </Routes>
-      </Router> 
   );
 }
 

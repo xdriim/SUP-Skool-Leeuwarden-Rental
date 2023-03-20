@@ -8,6 +8,7 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 export function ProductInfo(props) {
 
     const { productId } = useParams();
+    console.log(productId);
     const product = sups.find((product) => product.id.toString() === productId);
 
     return (

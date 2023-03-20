@@ -6,15 +6,19 @@ import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import GenerateHeader from "./components/sections/Header";
 import GenerateFooter from "./components/sections/Footer";
 
+import { BrowserRouter as Router } from 'react-router-dom';
+
 // ReactDOM.render(<App />, document.getElementById("root"));
 
 // After
 const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(<div>
+  <Router>
     <GenerateHeader />
     <main>
-      <App />
+        <App />
     </main>
     <GenerateFooter />
+    </Router>
   </div>);

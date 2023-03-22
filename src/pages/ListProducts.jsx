@@ -1,5 +1,5 @@
 import { ProductCard } from "./../components/ProductCard";
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
 // , { useEffect, useState }
 import sups from "../utils/sup.json";
@@ -17,7 +17,13 @@ export function ListProducts(props) {
       else return [];
     }
 
+    const busquedaCorrecta = () => {
+      if(filterData().length > 0) return true
+      else return false
+    }
+
   console.log(filterData());
+  console.log(busquedaCorrecta());
 
   // SI ESTÁ VACÍO DEBERIA MOSTRAR ALGO
   // CON UN MENSAJE DE NO COINCIDE
@@ -30,6 +36,12 @@ export function ListProducts(props) {
               {filterData().map((product) => (
                   <ProductCard key={product.id} id={product.id} product={product} />
               ))}
+              {!busquedaCorrecta() &&
+                <Col>
+                  <h1>No hay resultados para "{productsSearch}"</h1>
+                </Col>
+              }
+              
             </Row>
           </Col>
         </Row>

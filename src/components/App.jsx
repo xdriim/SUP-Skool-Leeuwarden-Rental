@@ -9,6 +9,7 @@ import { Login } from './../pages/auth/Login';
 import { Register } from './../pages/auth/Register';
 import { Cart } from './../pages/Cart';
 import { ListProducts } from './../pages/ListProducts';
+import { Calendar } from './../pages/buyProduct/setDate';
 
 
 export function App() {
@@ -18,6 +19,7 @@ export function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/productInfo/:productId" element={<ProductInfo />} />
+          <Route path="/setDate" element={<Calendar />} />
           <Route path="/listProducts/:productsSearch" element={<ListProducts />} />
           <Route path='/preAuth' element={<PreAuth />} />
           <Route path='/login' element={<Login />} />

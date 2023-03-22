@@ -20,7 +20,7 @@ export function ProductCard({ product }) {
 
   return (
     <Col xs={12} sm={12} md={6} lg={6} xl={3} className="mb-4">
-      <Link to={`/productInfo/${product.id}`}>
+      <Link to={`/productInfo/${product.id}`} style={{ color: '#305090', textDecoration: 'none' }}>
         <Card className="sliderSup" style={{ 
           width: '16rem',
           transition: 'all 0.3s ease-in-out',
@@ -32,7 +32,7 @@ export function ProductCard({ product }) {
           <Card.Img variant="top" className="productImage" src={product.imgUrl} />
           <Card.Body>
             <Card.Title className={style.title}>{product.name}</Card.Title>
-            <Button style={{ background: '#DEEDFF', color: '#305090', borderColor: '#305090' }}>from <span className={style.negrita}>{product.price}€</span></Button>
+            <p >from <span className={style.negrita}>{product.price}€</span></p>
           </Card.Body>
         </Card>
       </Link>

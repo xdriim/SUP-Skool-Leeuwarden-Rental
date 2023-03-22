@@ -9,6 +9,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
+// Aquí debe entrar la cesta para modificar un número al lado de faShoppingCart
+
 export function GenerateHeader() {
     return(
         <header style={{ background: '#DEEDFF', marginBottom: '50px' }}>

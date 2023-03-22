@@ -30,13 +30,24 @@ export function SearchBar() {
     navigate('/listProducts/'+searchTerm); 
   };
 
+  // Efecto focus
+const [isFocus, setIsFocus] = useState(false);
+
+const handleFocusInput = () => {
+  setIsFocus(true);
+}
+
+const handleBlurInput = () => {
+  setIsFocus(false);
+}
+
   return (
     <div>
       {/* hacer responsive de este width */}
         <InputGroup style={{ width: '500px' }}>
-          <FormControl type="text" placeholder="Search" aria-label="Search" value={searchTerm} onChange={handleInputChange} />
+          <FormControl type="text" placeholder="Search" aria-label="Search" value={searchTerm} onChange={handleInputChange} onFocus={handleFocusInput} onBlur={handleBlurInput} />
           <Button variant="light" type="submit" id="button-addon2" onClick={handleSubmit}><FontAwesomeIcon icon={faSearch} className="text-muted" /></Button>
-          <Dropdown.Menu show={filterData().length > 0} style={{ width: '462px' }} className="text-center">
+          <Dropdown.Menu show={filterData().length > 0 || isFocus} style={{ width: '462px' }} className="text-center">
             {filterData().map(item => (
               <Dropdown.Item href={'/productInfo/'+item.id} key={item.id}>{item.name}</Dropdown.Item>
             ))}

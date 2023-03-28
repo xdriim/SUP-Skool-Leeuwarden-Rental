@@ -1,5 +1,5 @@
-import { Card, Button, Col } from 'react-bootstrap';
-import style from "./ProductCard.module.css";
+import { Card, Col, Button } from 'react-bootstrap';
+import cardStyle from "./ProductCard.module.css";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
@@ -16,8 +16,6 @@ export function ProductCard({ product }) {
     setIsHovered(false);
   }
 
- 
-
   return (
     <Col xs={12} sm={12} md={6} lg={6} xl={3} className="mb-4">
       <Link to={`/productInfo/${product.id}`} style={{ color: '#305090', textDecoration: 'none' }}>
@@ -31,8 +29,10 @@ export function ProductCard({ product }) {
         onMouseLeave={handleMouseLeave}>
           <Card.Img variant="top" className="productImage" src={product.imgUrl} />
           <Card.Body>
-            <Card.Title className={style.title}>{product.name}</Card.Title>
-            <p >from <span className={style.negrita}>{product.price}€</span></p>
+            <Card.Title className={cardStyle.title}>{product.name}</Card.Title>
+            <div className='d-flex justify-content-between'>
+            <p>from <span className={cardStyle.negrita}>{product.price}€</span></p>
+            </div>
           </Card.Body>
         </Card>
       </Link>

@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-export function ProductInfo(props) {
+export function ProductInfo() {
 
     const { productId } = useParams();
     console.log(productId);

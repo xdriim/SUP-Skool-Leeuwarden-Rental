@@ -12,8 +12,8 @@ export function GenerateFooter() {
                         <p>SUP Skool Leeuwarden 2023</p>
                     </Col>
                     <Col>
-                        <p>T: <a href="tel:+310582038399" className={fStyle.anchor}>058 203 83 99</a> | T: <a href="tel:+310582038183" className={fStyle.anchor}>058 203 81 83</a> (rental)</p>
-                        <p>M: <a href="mailto:info@supskoolleuwarden.nl" className={fStyle.anchor}>info@supskoolleuwarden.nl</a></p>
+                        <p>T: <a href="tel:+310582038399" className={fStyle.anchor} style={{ textDecoration: 'none', color: '#305090' }}>058 203 83 99</a> | T: <a href="tel:+310582038183" className={fStyle.anchor} style={{ textDecoration: 'none', color: '#305090' }}>058 203 81 83</a> (rental)</p>
+                        <p>M: <a href="mailto:info@supskoolleuwarden.nl" className={fStyle.anchor} style={{ textDecoration: 'none', color: '#305090' }}>info@supskoolleuwarden.nl</a></p>
                     </Col>
                 </Row>
             </Container>

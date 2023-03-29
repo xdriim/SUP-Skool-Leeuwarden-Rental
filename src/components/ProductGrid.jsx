@@ -31,7 +31,7 @@ export function ProductGrid() {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-    fetch('https://jcibravo.neocities.org/api/supskoolleuwarden.json')
+    fetch('http://monet.cat:8080/product')
       .then(response => response.json())
       .then(data => setData(data));
   }, []);

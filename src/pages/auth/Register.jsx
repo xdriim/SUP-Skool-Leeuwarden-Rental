@@ -2,36 +2,43 @@ import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 
 export function Register() {
-  const [usuario, setUsuario] = useState('');
+  const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Usuario:', usuario);
+    console.log('Usuario:', nombre);
     console.log('Email:', email);
     console.log('Contraseña:', password);
     // Aquí puedes enviar los datos del formulario a un servidor o hacer otras operaciones
   }
 
   return (
-    <Container>
-    <Form onSubmit={handleSubmit}>
-      <Form.Group controlId="usuario">
-        <Form.Label className='mt-3'>Usuario:</Form.Label>
-        <Form.Control type="text" value={usuario} onChange={(event) => setUsuario(event.target.value)} />
-      </Form.Group>
-      <Form.Group controlId="email">
-        <Form.Label className='mt-3'>Email:</Form.Label>
-        <Form.Control type="email" value={email} onChange={(event) => setEmail(event.target.value)} />
-      </Form.Group>
-      <Form.Group controlId="password">
-        <Form.Label className='mt-3'>Contraseña:</Form.Label>
-        <Form.Control type="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-      </Form.Group>
-      <Button className='mt-3' variant="primary" type="submit">Registrarse</Button>
-    </Form>
-    </Container>
+    <div>
+      {/* icono fontAwesome volver atrás */}
+        <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
+          <img src="./../../images/SUP.png" alt="logo" />
+          <h4 className='fw-bold mb-4'>Registro</h4>
+            <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="formBasicNombre" className='mb-4'>
+                  <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicEmail" className='mb-4'>
+                  <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
+              </Form.Group>
+
+              <Form.Group controlId="formBasicPassword" className='mb-4'>
+                  <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+              </Form.Group>
+
+              <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
+                  Continuar
+              </Button>
+            </Form>
+        </Container>
+    </div>
   );
 }
 

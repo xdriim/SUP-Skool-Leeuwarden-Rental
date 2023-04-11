@@ -4,7 +4,7 @@ import fStyle from './Footer.module.css';
 
 export function GenerateFooter() {
     return(
-        <footer style={{ background: '#DEEDFF', marginTop: '50px', padding: '20px' }}> 
+        <footer style={{ background: '#DEEDFF', padding: '20px' }}> 
             <Container>
                 <Row style={{ color: '#305090' }}>
                     <Col>

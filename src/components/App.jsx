@@ -10,6 +10,7 @@ import { Register } from './../pages/auth/Register';
 import { Cart } from './../pages/Cart';
 import { ListProducts } from './../pages/ListProducts';
 import { Calendar } from './../pages/buyProduct/setDate';
+import { Alquiler } from './../pages/Alquiler';
 
 
 export function App() {
@@ -21,6 +22,8 @@ export function App() {
           <Route path="/productInfo/:productId" element={<ProductInfo />} />
           <Route path="/setDate" element={<Calendar />} />
           <Route path="/listProducts/:productsSearch" element={<ListProducts />} />
+          <Route path="/alquiler/:typeID" element={<Alquiler />} />
+          {/* Posible enlace para tipo de producto */}
           <Route path='/preAuth' element={<PreAuth />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />

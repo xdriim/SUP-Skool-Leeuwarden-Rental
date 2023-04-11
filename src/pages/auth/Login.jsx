@@ -14,26 +14,26 @@ export function Login() {
   };
 
   return (
-    <Container>
-        <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" value={email} onChange={e => setEmail(e.target.value)} />
-            <Form.Text className="text-muted">
-            We'll never share your email with anyone else. Only with Juan Illescas
-            </Form.Text>
-        </Form.Group>
+    <div>
+      {/* icono fontAwesome volver atrás */}
+        <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
+          <img src="./../../images/SUP.png" alt="logo" />
+          <h4 className='fw-bold mb-4'>Inicio de sesión</h4>
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formBasicEmail" className='mb-4'>
+                  <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
+              </Form.Group>
 
-        <Form.Group controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
-        </Form.Group>
+              <Form.Group controlId="formBasicPassword" className='mb-4'>
+                  <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+              </Form.Group>
 
-        <Button variant="primary" type="submit" className='mt-4'>
-            Submit
-        </Button>
-        </Form>
-    </Container>
+              <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
+                  Continuar
+              </Button>
+            </Form>
+        </Container>
+    </div>
   );
 }
 

@@ -53,15 +53,23 @@ export function Alquiler() {
   return (
     <Container className='my-5'>
         <Row>
-          <Col xs={12} sm={12} md={12} lg={12} xl={12} className="d-flex justify-content-between">
-            <div className="">
+          <Col xs={12} sm={12} md={12} lg={12} xl={12} className="d-flex justify-content-between mb-3">
+            <Row>
+              <Col>
                 <Button id="bSUP" onClick={(e)=> changeType(e)} style={{ background: type === 'SUP' ? 'red' : 'blue' }}>SUP</Button>
+              </Col>
+              <Col>
                 <Button id="bCanoes" onClick={(e)=> changeType(e)} style={{ background: type === 'Canoes' ? 'red' : 'blue' }}>Canoes</Button>
+              </Col>
+              <Col>
                 <Button id="bBonos" onClick={(e)=> changeType(e)} style={{ background: type === 'Bonos' ? 'red' : 'blue' }}>Bonos</Button>
-            </div>
-            <div>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
                 <p style={{ textDecoration: 'underline' }}>Sort: by default</p>
-            </div>
+              </Col>
+            </Row>
           </Col>
           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
             <Row>

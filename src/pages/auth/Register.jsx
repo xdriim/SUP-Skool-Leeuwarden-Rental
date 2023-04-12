@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
+import logo from './../../pages/img/LogoLeeuwarden.png';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
+
+import { useNavigate  } from "react-router-dom";
 
 export function Register() {
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+
+  function handleGoBack() {
+    navigate(-1);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -15,10 +26,13 @@ export function Register() {
   }
 
   return (
-    <div>
-      {/* icono fontAwesome volver atrás */}
+    <Container>
+      <FontAwesomeIcon icon={faLeftLong} className='mb-5' onClick={handleGoBack} />
         <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
-          <img src="./../../images/SUP.png" alt="logo" />
+          <div style={{ textAlign: 'center' }}>
+            <img src={logo} alt="logo" style={{ width: '10%' }} />
+          </div>
+          
           <h4 className='fw-bold mb-4'>Registro</h4>
             <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formBasicNombre" className='mb-4'>
@@ -38,7 +52,7 @@ export function Register() {
               </Button>
             </Form>
         </Container>
-    </div>
+    </Container>
   );
 }
 

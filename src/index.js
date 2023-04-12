@@ -19,6 +19,6 @@ root.render(<div>
     <main>
         <App />
     </main>
-    <GenerateFooter />
+    {/* <GenerateFooter /> */}
     </Router>
   </div>);

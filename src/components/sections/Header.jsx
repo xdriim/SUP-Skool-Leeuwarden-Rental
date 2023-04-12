@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './../../images/SUP.png';
+import logo from './../../pages/img/LogoLeeuwarden.png';
 import "./Header.module.css";
 
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
@@ -7,6 +7,7 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 import { useLocation } from "react-router-dom";
 
 // Aquí debe entrar la cesta para modificar un número al lado de faShoppingCart
@@ -16,7 +17,7 @@ export function GenerateHeader() {
     console.log(location.pathname);
 
     const bgHeader = () =>{
-        if(location.pathname === '/alquiler'){
+        if(location.pathname.startsWith('/alquiler')){
             return true
         }else{
             return false
@@ -27,7 +28,7 @@ export function GenerateHeader() {
         <header style={{ background: bgHeader() ? '#DEEDFF' : 'white' }}>
             <Navbar>
                 <Container>
-                    <Nav className="ml-auto">
+                    <Nav>
                         <NavDropdown
                         id="nav-dropdown-dark-example"
                         title="Alquiler"
@@ -42,9 +43,10 @@ export function GenerateHeader() {
                             <p>Contacto</p>
                         </Nav.Link>
                     </Nav> 
-                    <Navbar.Brand href="/"><img src={logo} alt="Logo" /></Navbar.Brand>
                     
-                    <Nav className="ml-auto">
+                    <Navbar.Brand href="/"><img src={logo} alt="Logo" style={{ width: '9rem' }}/></Navbar.Brand>
+                    
+                    <Nav>
                         <Nav.Link href="/preauth">
                             <FontAwesomeIcon icon={faUser} />
                         </Nav.Link>

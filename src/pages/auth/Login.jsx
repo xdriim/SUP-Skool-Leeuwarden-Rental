@@ -5,6 +5,8 @@ import logo from './../../pages/img/LogoLeeuwarden.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate  } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
+import { Datos } from './profile/Datos';
 
 export function Login() {
   const [email, setEmail] = useState('');
@@ -21,12 +23,14 @@ export function Login() {
     console.log(`Email: ${email}, Password: ${password}`);
     // Aquí puedes agregar tu lógica para enviar la información de inicio de sesión al servidor
     // LocalStorage.setItem('user', JSON.parse())
-    
+    navigate('/datos');
   };
 
   return (
     <Container>
-      <FontAwesomeIcon icon={faLeftLong} className='mb-5' onClick={handleGoBack} />
+      <Button className='mb-5' style={{ backgroundColor: 'transaparent' }}>
+        <FontAwesomeIcon icon={faLeftLong} onClick={handleGoBack} />
+      </Button>
         <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
           <div style={{ textAlign: 'center' }}>
             <img src={logo} alt="logo" style={{ width: '10%' }} />
@@ -49,6 +53,10 @@ export function Login() {
               
             </Form>
         </Container>
+
+        <Routes>
+          <Route path="/datos" element={<Datos />} />
+        </Routes>
     </Container>
   );
 }

@@ -19,7 +19,7 @@ export function PreAuth() {
             <Row className='mb-5'>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
                         <Button style={{ background: '#DEEDFF', color: '#305090', width: '15rem', marginBottom: '20px' }}>
-                            <Link to={'/login'} style={{ color: '#305090', textDecoration: 'none' }}>Log in</Link>
+                            <Link to={'/login'} style={{ color: '#305090', textDecoration: 'none', width: '100%' }}>Log in</Link>
                         </Button>
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">

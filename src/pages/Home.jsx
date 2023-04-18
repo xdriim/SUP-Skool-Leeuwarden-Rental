@@ -1,4 +1,3 @@
-import { ProductGrid } from "./../components/ProductGrid";
 import { Container } from "react-bootstrap";
 import homeStyle from './Home.module.css';
 

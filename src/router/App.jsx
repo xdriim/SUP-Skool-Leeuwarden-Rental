@@ -15,10 +15,23 @@ import { Alquiler } from '../pages/Alquiler';
 import { Datos } from './../pages/auth/profile/Datos';
 import { Reservas } from './../pages/auth/profile/Reservas';
 import { Historial } from './../pages/auth/profile/Historial';
+import { GenerateHeader } from '../components/sections/Header';
+import { GenerateFooter } from '../components/sections/Footer';
 
 
 export function App() {
   return (
+    <div>
+        <Routes>
+          <Route exact path="/" element={<GenerateHeader />} />
+          <Route exact path="/about" element={<GenerateHeader />} />
+          <Route exact path="/contact" element={<GenerateHeader />} />
+          <Route exact path="/productInfo/:productId" element={<GenerateHeader />} />
+          <Route exact path="/listProducts/:productsSearch" element={<GenerateHeader />} />
+          <Route exact path="/alquiler/:typeID" element={<GenerateHeader />} />
+          <Route exact path="/cart" element={<GenerateHeader />} />
+          <Route exact path="/preAuth" element={<GenerateHeader />} />
+        </Routes>
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -28,10 +41,14 @@ export function App() {
           <Route path="/listProducts/:productsSearch" element={<ListProducts />} />
           <Route path="/alquiler/:typeID" element={<Alquiler />} />
           {/* Posible enlace para tipo de producto */}
+          <Route path='/cart' element={<Cart />} />
+
+          {/* Tema usuario */}
           <Route path='/preAuth' element={<PreAuth />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/cart' element={<Cart />} />
+
+          {/* Error página no encontrada cuidado!! */}
           <Route path='*' element={<Error />} />
 
           {/* Parte de usuario, no se puede acceder sin loguearse */}
@@ -39,6 +56,8 @@ export function App() {
           <Route path="/hitorial" element={<Historial />} />
           <Route path="/reservas" element={<Reservas />} />
         </Routes>
+    </div>
+        
   );
 }
 

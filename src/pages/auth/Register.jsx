@@ -26,33 +26,37 @@ export function Register() {
   }
 
   return (
-    <Container>
-      <FontAwesomeIcon icon={faLeftLong} className='mb-5' onClick={handleGoBack} />
-        <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
-          <div style={{ textAlign: 'center' }}>
-            <img src={logo} alt="logo" style={{ width: '10%' }} />
-          </div>
-          
-          <h4 className='fw-bold mb-4'>Registro</h4>
-            <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="formBasicNombre" className='mb-4'>
-                  <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
-              </Form.Group>
+    <div className="m-0 vh-100 row justify-content-center align-items-center">
+      <Container>
+            <Button className='mb-5' style={{ backgroundColor: 'transaparent' }}>
+              <FontAwesomeIcon icon={faLeftLong} onClick={handleGoBack} />
+            </Button>
+          <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
+            <div style={{ textAlign: 'center' }}>
+              <img src={logo} alt="logo" style={{ width: '10%' }} />
+            </div>
+            
+            <h4 className='fw-bold mb-4'>Registro</h4>
+              <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formBasicNombre" className='mb-4'>
+                    <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
+                </Form.Group>
 
-              <Form.Group controlId="formBasicEmail" className='mb-4'>
-                  <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
-              </Form.Group>
+                <Form.Group controlId="formBasicEmail" className='mb-4'>
+                    <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
+                </Form.Group>
 
-              <Form.Group controlId="formBasicPassword" className='mb-4'>
-                  <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
-              </Form.Group>
+                <Form.Group controlId="formBasicPassword" className='mb-4'>
+                    <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+                </Form.Group>
 
-              <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
-                  Continuar
-              </Button>
-            </Form>
-        </Container>
-    </Container>
+                <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
+                    Continuar
+                </Button>
+              </Form>
+          </Container>
+      </Container>
+    </div>
   );
 }
 

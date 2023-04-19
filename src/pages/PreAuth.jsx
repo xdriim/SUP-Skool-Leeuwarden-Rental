@@ -9,7 +9,7 @@ export function PreAuth() {
   }
 
     return (
-      <div>
+      <div className='my-5 py-5'>
         <Container>
             <Row className='mb-5'>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">

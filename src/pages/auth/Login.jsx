@@ -27,37 +27,40 @@ export function Login() {
   };
 
   return (
-    <Container>
-      <Button className='mb-5' style={{ backgroundColor: 'transaparent' }}>
-        <FontAwesomeIcon icon={faLeftLong} onClick={handleGoBack} />
-      </Button>
-        <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
-          <div style={{ textAlign: 'center' }}>
-            <img src={logo} alt="logo" style={{ width: '10%' }} />
-          </div>
-      
-          <h4 className='fw-bold mb-4'>Inicio de sesión</h4>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formBasicEmail" className='mb-4'>
-                  <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
-              </Form.Group>
+    <div className="m-0 vh-100 row justify-content-center align-items-center">
+      <Container >
+            <Button className='mb-5' style={{ backgroundColor: 'transaparent' }}>
+              <FontAwesomeIcon icon={faLeftLong} onClick={handleGoBack} />
+            </Button>
+              <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
+                <div style={{ textAlign: 'center' }}>
+                  <img src={logo} alt="logo" style={{ width: '10%' }} />
+                </div>
+            
+                <h4 className='fw-bold mb-4'>Inicio de sesión</h4>
+                  <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="formBasicEmail" className='mb-4'>
+                        <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
+                    </Form.Group>
 
-              <Form.Group controlId="formBasicPassword" className='mb-4'>
-                  <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
-              </Form.Group>
+                    <Form.Group controlId="formBasicPassword" className='mb-4'>
+                        <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+                    </Form.Group>
 
-              <Link to={'/register'} style={{ color: '#80ACE0' }}>Todavía no tienes cuenta?</Link>
-              <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
-                  Continuar
-              </Button>
-              
-            </Form>
-        </Container>
+                    <Link to={'/register'} style={{ color: '#80ACE0' }}>Todavía no tienes cuenta?</Link>
+                    <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
+                        Continuar
+                    </Button>
+                    
+                  </Form>
+              </Container>
 
-        <Routes>
-          <Route path="/datos" element={<Datos />} />
-        </Routes>
-    </Container>
+              <Routes>
+                <Route path="/datos" element={<Datos />} />
+              </Routes>
+          </Container>
+    </div>
+    
   );
 }
 

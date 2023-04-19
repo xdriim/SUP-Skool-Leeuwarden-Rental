@@ -44,7 +44,9 @@ export function GenerateHeader() {
                         </Nav.Link>
                     </Nav> 
                     
-                    <Navbar.Brand href="/"><img src={logo} alt="Logo" style={{ width: '9rem' }}/></Navbar.Brand>
+                    <Navbar.Brand href="/">
+                        <img src={logo} alt="Logo" style={{ width: '9rem' }}/>
+                    </Navbar.Brand>
                     
                     <Nav>
                         <Nav.Link href="/preauth">

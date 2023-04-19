@@ -4,7 +4,9 @@
         "name" : "SUP Board",
         "price" : 15.00,
         "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2021/01/IMG-20200526-WA0013-300x300.jpg",
-        "type" : "sup"
+        "type" : "sup",
+        "any": 2018,
+        "mes": "febrero"
     },
     {
         "id" : 2,

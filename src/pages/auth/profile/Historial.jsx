@@ -52,7 +52,7 @@ export function Historial() {
                       </Card>
 
                       <Button className='mb-2 w-50'>
-                        <Link to={'/datos'} className='text-light text-decoration-none'>Datos</Link>
+                        <Link to={'/datos'} className='text-light text-decoration-none w-100'>Datos</Link>
                       </Button>
                       <Button className='mb-2 w-50'>
                         <Link to={'/reservas'} className='text-light text-decoration-none'>Reservas</Link>

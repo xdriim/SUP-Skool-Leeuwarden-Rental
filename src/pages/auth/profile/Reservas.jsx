@@ -7,30 +7,40 @@ import perfilImg from './../../../assets/img/usuario.png'
 import { useState } from 'react';
 import { get } from './../../../utils/httpClient';
 
+import json from './../../../utils/sup.json';
+import { filtratMes, meses, anyos } from './../../../utils/filter';
+
+console.log(anyos);
 export function Reservas() {
   // get('/user/login/');
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   function handleGoBack() {
     navigate(-1);
   }
 
-  // Recoger información que tiene el usuario actual
-  const [nombre, setNombre] = useState('');
-  const [nacimiento, setNacimiento] = useState('');
-  const [contrasenya, setContrasenya] = useState('');
+  // Búsqueda de una reserva en concreto, pero paso nombre y recojo id
+  const [busqueda, setBusqueda] = useState();
+  
+  const [mes, setMes] = useState();
+  const [anyo, setAnyo] = useState();
 
-  const [nuevaContrasenya, setNuevaContrasenya] = useState('');
-  const [repetirContrasenya, setRepetirContrasenya] = useState('');
+  
+    const opciones = anyos.map((anyo, index) => (
+      <option key={index} value={anyo}>
+        {anyo}
+      </option>
+    ));
+  
 
-  // Cambiazo cogiendo api
-  const changeDatos = () => {
+  // Lógica de filtro
+  // Lógica de búsqueda
+  const results = !busqueda ? json : json.filter( (dato) => dato.name.toLocaleLowerCase().includes(busqueda.toLocaleLowerCase()) );
 
-  };
+  console.log(results);
 
-  const changeContra = () => {
+  filtratMes(2002)
 
-  };
 
     return (
       <div className='my-5'>
@@ -65,63 +75,41 @@ export function Reservas() {
                 </Col>
 
                 <Col xs={6} sm={6} md={6} lg={6} xl={6} className='mx-auto'>
-                    <h1>MIS DATOS</h1>
-                    <h3>Datos de mi cuenta</h3>
+                    <h1>RESERVAS</h1>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                      <Form onSubmit={changeDatos}>
+                      <Form onSubmit={busqueda}>
                         <Row>
-                        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                          <Form.Group controlId="formBasicNombre" className='mb-4'>
-                            <Form.Label>Nombre</Form.Label>
-                              <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
-                          </Form.Group>
-                        </Col>
-                        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                            <Form.Group controlId="formBasicNombre" className='mb-4'>
-                            <Form.Label>Fecha de nacimiento</Form.Label>
-                                <Form.Control type="date" placeholder="Contraseña" value={nacimiento} onChange={e => setNacimiento(e.target.value)} />
-                            </Form.Group>
-                        </Col>
-                        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                          <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end'>
-                              Guardar
-                          </Button>
-                        </Col>
+                          <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <Form.Select aria-label="filtroAnyo">
+                              {opciones}
+                            </Form.Select>
+                          </Col>
+                          <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                            <Form.Select aria-label="filtroMes">
+                              <option>Enero</option>
+                              <option value="1">Febrero</option>
+                              <option value="2">Marzo</option>
+                              <option value="3">Abril</option>
+                              <option value="4">Mayo</option>
+                              <option value="5">Junio</option>
+                              <option value="6">Julio</option>
+                              <option value="7">Agosto</option>
+                              <option value="8">Septiembre</option>
+                              <option value="9">Octubre</option>
+                              <option value="10">Noviembre</option>
+                              <option value="11">Diciembre</option>
+                            </Form.Select>
+                          </Col>
+                          <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+                              <Form.Group controlId="formBusqueda" className='mb-4'>
+                                  <Form.Control type="text" placeholder="Buscar" value={busqueda} onChange={e => setBusqueda(e.target.value)} />
+                              </Form.Group>
+                          </Col>
                         </Row>
                       </Form>
                     </Col>
                     
-                    <h3>Contraseña</h3>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                      <Row>
-                        <Form onSubmit={changeContra}>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                              <Form.Group controlId="formBasicNombre" className='mb-4'>
-                                <Form.Label>Contraseña actual</Form.Label>
-                                  <Form.Control type="text" placeholder="Contraseña actual" value={contrasenya} onChange={e => setContrasenya(e.target.value)} />
-                              </Form.Group>
-                          </Col>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                              <Form.Group controlId="formBasicNombre" className='mb-4'>
-                                <Form.Label>Nueva contraseña</Form.Label>
-                                  <Form.Control type="text" placeholder="Nueva contraseña" value={nuevaContrasenya} onChange={e => setNuevaContrasenya(e.target.value)} />
-                              </Form.Group>
-                          </Col>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                              <Form.Group controlId="formBasicNombre" className='mb-4'>
-                                <Form.Label>Repetir contraseña</Form.Label>
-                                  <Form.Control type="text" placeholder="Repetir contraseña" value={repetirContrasenya} onChange={e => setRepetirContrasenya(e.target.value)} />
-                              </Form.Group>
-                          </Col>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end'>
-                                  Guardar cambios
-                            </Button>
-                          </Col>
-                          
-                        </Form>
-                      </Row>
-                    </Col>
+                    
                 </Col>
             </Row>
         </Container>

@@ -23,6 +23,7 @@ export function App() {
   return (
     <div>
         <Routes>
+          {/* Header */}
           <Route exact path="/" element={<GenerateHeader />} />
           <Route exact path="/about" element={<GenerateHeader />} />
           <Route exact path="/contact" element={<GenerateHeader />} />
@@ -48,13 +49,25 @@ export function App() {
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
 
-          {/* Error página no encontrada cuidado!! */}
-          <Route path='*' element={<Error />} />
-
           {/* Parte de usuario, no se puede acceder sin loguearse */}
           <Route path="/datos" element={<Datos />} />
           <Route path="/hitorial" element={<Historial />} />
           <Route path="/reservas" element={<Reservas />} />
+          
+          {/* Error página no encontrada cuidado!! */}
+          <Route path='*' element={<Error />} />
+        </Routes>
+
+        <Routes>
+          {/* Footer */}
+          <Route exact path="/" element={<GenerateFooter />} />
+          <Route exact path="/about" element={<GenerateFooter />} />
+          <Route exact path="/contact" element={<GenerateFooter />} />
+          <Route exact path="/productInfo/:productId" element={<GenerateFooter />} />
+          <Route exact path="/listProducts/:productsSearch" element={<GenerateFooter />} />
+          <Route exact path="/alquiler/:typeID" element={<GenerateFooter />} />
+          <Route exact path="/cart" element={<GenerateFooter />} />
+          <Route exact path="/preAuth" element={<GenerateFooter />} />
         </Routes>
     </div>
         

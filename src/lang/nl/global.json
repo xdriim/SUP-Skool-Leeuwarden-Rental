@@ -1,0 +1,17 @@
+{
+  "header": {
+    "tran1": "Verhuur",
+    "tran2": "SUP",
+    "tran3": "Kanos",
+    "tran4": "Voucher",
+    "tran5": "Contact"
+  },
+  "home": {
+    "tran1": "SUPSkool Leeuwarden",
+    "tran2": "Welkom op de website van Stadsstrand Leeuwarden. Op deze website bieden wij verschillende verhuurmogelijkheden aan."
+  },
+  "langChanged": {
+    "tran1": "U verandert de website in het Nederlands"
+  }
+  
+}

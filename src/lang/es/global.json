@@ -1,0 +1,16 @@
+{
+  "header": {
+    "tran1": "Alquiler",
+    "tran2": "Paddle Surf",
+    "tran3": "Canoas",
+    "tran4": "Bono",
+    "tran5": "Contacto"
+  },
+  "home": {
+    "tran1": "Escuela de SUP de Leeuwarden",
+    "tran2" : "Bienvenido al sitio web de Stadsstrand Leeuwarden. En este sitio web ofrecemos varias opciones de alquiler."
+  },
+  "langChanged": {
+    "tran1": "Has cambiado el sitio web a español"
+  }
+}

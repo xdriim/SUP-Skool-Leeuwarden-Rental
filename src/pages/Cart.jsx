@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Button, Form } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form, ProgressBar } from 'react-bootstrap';
 import prod from './../pages/img/IMG-20200526-WA0013-300x300.jpg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -69,11 +69,11 @@ export function Cart() {
   return (
     <Container className='my-5'>
         <Row>
-            <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+            <Col xs={12} sm={12} md={12} lg={12} xl={12} className='mb-4'>
                 {/* Aqui va a estar la linea de pasos */}
-              
+                <ProgressBar now="0"></ProgressBar>
             </Col>
-            <Row>
+            
               <Col xs={6} sm={6} md={6} lg={6} xl={6} style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
                 <h3>Cesta</h3>
                 <Row>
@@ -141,7 +141,6 @@ export function Cart() {
                   </Col>
                 </Row>
               </Col>
-            </Row>
             
             {/* Aquí va el input de descuento */}
             <Col xs={6} sm={6} md={6} lg={6} xl={6}>

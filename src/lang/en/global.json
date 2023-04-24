@@ -1,0 +1,16 @@
+{
+    "header": {
+      "tran1": "Renting",
+      "tran2": "SUP",
+      "tran3": "Canoes",
+      "tran4": "Pass",
+      "tran5": "Contact"
+    },
+    "home": {
+      "tran1": "SUP School of Leeuwarden",
+      "tran2" : "Welcome to the website of Stadsstrand Leeuwarden. On this website we offer various rental options."
+    },
+    "langChanged": {
+      "tran1": "You've changed the website to English"
+    }
+}

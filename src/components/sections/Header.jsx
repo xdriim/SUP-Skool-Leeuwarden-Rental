@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useTransition } from 'react';
 import logo from './../../pages/img/LogoLeeuwarden.png';
 import "./Header.module.css";
 
@@ -10,9 +10,15 @@ import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
 import { useLocation } from "react-router-dom";
 
+// Translation
+import { LanguageSwitcher } from '../LanguageSwitcher';
+import { useTranslation } from 'react-i18next';
+
+
 // Aquí debe entrar la cesta para modificar un número al lado de faShoppingCart
 
 export function GenerateHeader() {
+    const { t } = useTranslation("global");
     let location = useLocation();
     console.log(location.pathname);
 
@@ -31,16 +37,16 @@ export function GenerateHeader() {
                     <Nav>
                         <NavDropdown
                         id="nav-dropdown-dark-example"
-                        title="Alquiler"
+                        title={t('header.tran1')}
                         menuVariant="dark">
                             {/* No recargar de esta manera */}
-                            <NavDropdown.Item href="/alquiler/SUP">SUP</NavDropdown.Item>
-                            <NavDropdown.Item href="/alquiler/Canoes">Canoes</NavDropdown.Item>
-                            <NavDropdown.Item href="/alquiler/Bonos">Bonos</NavDropdown.Item>
+                            <NavDropdown.Item href="/alquiler/SUP">{t("header.tran2")}</NavDropdown.Item>
+                            <NavDropdown.Item href="/alquiler/Canoes">{t("header.tran3")}</NavDropdown.Item>
+                            <NavDropdown.Item href="/alquiler/Bonos">{t("header.tran4")}</NavDropdown.Item>
                         </NavDropdown>
                         
                         <Nav.Link href="/contact">
-                            <p>Contacto</p>
+                            <p>{t('header.tran5')}</p>
                         </Nav.Link>
                     </Nav> 
                     
@@ -55,6 +61,7 @@ export function GenerateHeader() {
                         <Nav.Link href="/cart">
                             <FontAwesomeIcon icon={faShoppingCart} />
                         </Nav.Link>
+                        <LanguageSwitcher></LanguageSwitcher>
                     </Nav> 
                 </Container>
             </Navbar>

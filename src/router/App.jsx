@@ -4,9 +4,11 @@ import {ProductInfo} from '../pages/ProductInfo';
 import {Contact} from '../pages/Contact';
 import {About} from '../pages/About';
 import {Error} from '../pages/Error';
+
 import { PreAuth } from '../pages/PreAuth';
 import { Login } from '../pages/auth/Login';
 import { Register } from '../pages/auth/Register';
+
 import { Cart } from '../pages/Cart';
 import { ListProducts } from '../pages/ListProducts';
 import { Calendar } from '../pages/buyProduct/setDate';
@@ -51,15 +53,16 @@ export function App() {
 
           {/* Parte de usuario, no se puede acceder sin loguearse */}
           <Route path="/datos" element={<Datos />} />
-          <Route path="/hitorial" element={<Historial />} />
+          <Route path="/historial" element={<Historial />} />
           <Route path="/reservas" element={<Reservas />} />
           
           {/* Error página no encontrada cuidado!! */}
           <Route path='*' element={<Error />} />
         </Routes>
 
-        <Routes>
-          {/* Footer */}
+        
+        {/* Footer */}
+        {/* <Routes>  
           <Route exact path="/" element={<GenerateFooter />} />
           <Route exact path="/about" element={<GenerateFooter />} />
           <Route exact path="/contact" element={<GenerateFooter />} />
@@ -68,7 +71,7 @@ export function App() {
           <Route exact path="/alquiler/:typeID" element={<GenerateFooter />} />
           <Route exact path="/cart" element={<GenerateFooter />} />
           <Route exact path="/preAuth" element={<GenerateFooter />} />
-        </Routes>
+        </Routes> */}
     </div>
         
   );

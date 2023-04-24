@@ -28,10 +28,10 @@ export function Register() {
   return (
     <div className="m-0 vh-100 row justify-content-center align-items-center">
       <Container>
-            <Button className='mb-5' style={{ backgroundColor: 'transaparent' }}>
-              <FontAwesomeIcon icon={faLeftLong} onClick={handleGoBack} />
+          <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4 w-50'>
+            <Button className='mb-5' style={{ backgroundColor: 'transaparent' }} onClick={handleGoBack}>
+              <FontAwesomeIcon icon={faLeftLong} />
             </Button>
-          <Container style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
             <div style={{ textAlign: 'center' }}>
               <img src={logo} alt="logo" style={{ width: '10%' }} />
             </div>

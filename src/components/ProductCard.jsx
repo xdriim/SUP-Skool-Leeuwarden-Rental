@@ -31,7 +31,7 @@ export function ProductCard({ product }) {
           <Card.Body>
             <Card.Title className={cardStyle.title}>{product.name}</Card.Title>
             <div className='d-flex justify-content-between'>
-            <p>from <span className={cardStyle.negrita}>{product.price}€</span></p>
+              <p>from <span className={cardStyle.negrita}>{product.price}€</span></p>
             </div>
           </Card.Body>
         </Card>

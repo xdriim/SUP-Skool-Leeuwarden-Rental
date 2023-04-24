@@ -7,6 +7,8 @@ import perfilImg from './../../../assets/img/usuario.png'
 import { useState } from 'react';
 import { get } from './../../../utils/httpClient';
 
+import json from './../../../utils/sup.json';
+
 export function Historial() {
   // get('/user/login/');
     const navigate = useNavigate();
@@ -15,22 +17,36 @@ export function Historial() {
     navigate(-1);
   }
 
-  // Recoger información que tiene el usuario actual
-  const [nombre, setNombre] = useState('');
-  const [nacimiento, setNacimiento] = useState('');
-  const [contrasenya, setContrasenya] = useState('');
-
-  const [nuevaContrasenya, setNuevaContrasenya] = useState('');
-  const [repetirContrasenya, setRepetirContrasenya] = useState('');
-
-  // Cambiazo cogiendo api
-  const changeDatos = () => {
-
-  };
-
-  const changeContra = () => {
-
-  };
+  // Recoger información según usuario
+  const historial = json.map((reserva, index) => (
+    <Col xs={12} sm={12} md={12} lg={12} xl={12} key={index} value={reserva.name} className='mb-4' >
+      <Row>
+        <Col xs={3} sm={3} md={3} lg={3} xl={3}>
+          <h4>Nº reserva</h4>
+          <p>3465</p>
+        </Col>
+        <Col xs={9} sm={9} md={9} lg={9} xl={9}>
+          <h4>Fecha reserva</h4>
+          <p>23/07/22</p>
+        </Col>
+      </Row>
+      <Row>
+        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+          <img src={ reserva.imgUrl } alt={ reserva.name } style={{ width: "12vh" }} />
+        </Col>
+        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+          <p>{ reserva.name }</p>
+          <p>{ reserva.type } - 1 estudiante</p>
+        </Col>
+        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
+          <Button style={{ backgroundColor: '#E03A40', color: 'white', borderColor: '#E03A40' }}>
+            Reservar de nuevo
+          </Button>
+        </Col>
+      </Row>
+    </Col>
+));
+  
 
     return (
       <div className='my-5'>
@@ -65,63 +81,13 @@ export function Historial() {
                 </Col>
 
                 <Col xs={6} sm={6} md={6} lg={6} xl={6} className='mx-auto'>
-                    <h1>MIS DATOS</h1>
-                    <h3>Datos de mi cuenta</h3>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                      <Form onSubmit={changeDatos}>
-                        <Row>
-                        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                          <Form.Group controlId="formBasicNombre" className='mb-4'>
-                            <Form.Label>Nombre</Form.Label>
-                              <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
-                          </Form.Group>
-                        </Col>
-                        <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                            <Form.Group controlId="formBasicNombre" className='mb-4'>
-                            <Form.Label>Fecha de nacimiento</Form.Label>
-                                <Form.Control type="date" placeholder="Contraseña" value={nacimiento} onChange={e => setNacimiento(e.target.value)} />
-                            </Form.Group>
-                        </Col>
-                        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                          <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end'>
-                              Guardar
-                          </Button>
-                        </Col>
-                        </Row>
-                      </Form>
-                    </Col>
-                    
-                    <h3>Contraseña</h3>
-                    <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+                    <h1>HISTORIAL ALQUILER</h1>
+                    <Col xs={12} sm={12} md={12} lg={12} xl={12} className='border p-3'>
                       <Row>
-                        <Form onSubmit={changeContra}>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                              <Form.Group controlId="formBasicNombre" className='mb-4'>
-                                <Form.Label>Contraseña actual</Form.Label>
-                                  <Form.Control type="text" placeholder="Contraseña actual" value={contrasenya} onChange={e => setContrasenya(e.target.value)} />
-                              </Form.Group>
-                          </Col>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                              <Form.Group controlId="formBasicNombre" className='mb-4'>
-                                <Form.Label>Nueva contraseña</Form.Label>
-                                  <Form.Control type="text" placeholder="Nueva contraseña" value={nuevaContrasenya} onChange={e => setNuevaContrasenya(e.target.value)} />
-                              </Form.Group>
-                          </Col>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                              <Form.Group controlId="formBasicNombre" className='mb-4'>
-                                <Form.Label>Repetir contraseña</Form.Label>
-                                  <Form.Control type="text" placeholder="Repetir contraseña" value={repetirContrasenya} onChange={e => setRepetirContrasenya(e.target.value)} />
-                              </Form.Group>
-                          </Col>
-                          <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end'>
-                                  Guardar cambios
-                            </Button>
-                          </Col>
-                          
-                        </Form>
+                        {historial}
                       </Row>
                     </Col>
+                    
                 </Col>
             </Row>
         </Container>

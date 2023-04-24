@@ -15,6 +15,8 @@ export function Datos() {
     navigate(-1);
   }
 
+  
+
   // Recoger información que tiene el usuario actual
   const [nombre, setNombre] = useState('');
   const [nacimiento, setNacimiento] = useState('');
@@ -25,7 +27,7 @@ export function Datos() {
 
   // Cambiazo cogiendo api
   const changeDatos = () => {
-
+    // Recoger información en formulario y entonces hacer las comprobaciones necesarias. Ya después envio
   };
 
   const changeContra = () => {

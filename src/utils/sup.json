@@ -13,14 +13,18 @@
         "name" : "SUP board (gevorderde)",
         "price" : 17.50,
         "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2020/11/IMG_8961-300x300.jpg",
-        "type" : "sup"
+        "type" : "sup",
+        "any": 2023,
+        "mes": "abril"
     },
     {
         "id" : 3,
         "name" : "Tandem SUP",
         "price" : 20.00,
         "imgUrl" : "https://supskoolleeuwarden.nl/huren/wp-content/uploads/sites/2/2021/01/IMG-3315-300x300.jpg",
-        "type" : "sup"
+        "type" : "sup",
+        "any": 2023,
+        "mes": "abril"
     },
     {
         "id" : 4,

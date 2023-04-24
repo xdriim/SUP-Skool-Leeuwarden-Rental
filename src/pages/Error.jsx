@@ -10,7 +10,7 @@ export function Error() {
   {/* Tener en cuenta los códigos de error de la API */}
     return (
       <div className="m-0 vh-100 row justify-content-center align-items-center">
-        <Container className="text-center mb-5">
+        <Container className="text-center mb-5 py-5">
           <Row>
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
                 <Image src={error} style={{ width: '60%' }}></Image>

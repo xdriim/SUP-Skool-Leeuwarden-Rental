@@ -1,7 +1,7 @@
-import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, ProgressBar } from 'react-bootstrap';
 import { useState } from 'react';
 
-export function Contact() {
+export function InfoBuyer() {
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
   const [numero, setNumero] = useState('');

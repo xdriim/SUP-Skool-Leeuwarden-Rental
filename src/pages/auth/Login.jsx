@@ -49,7 +49,7 @@ export function Login() {
                     </Form.Group>
 
                     <Link to={'/register'} style={{ color: '#80ACE0' }}>Todavía no tienes cuenta?</Link>
-                    <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
+                    <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }} className='mt-3'>
                         Continuar
                     </Button>
                     

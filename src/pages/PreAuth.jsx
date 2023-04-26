@@ -8,6 +8,10 @@ export function PreAuth() {
     navigate(-1);
   }
 
+  function goLogin(){
+    navigate('/login');
+  }
+
     return (
       <div className='my-5 py-5'>
         <Container>
@@ -18,8 +22,8 @@ export function PreAuth() {
             </Row>
             <Row className='mb-5'>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">
-                        <Button style={{ background: '#DEEDFF', color: '#305090', width: '15rem', marginBottom: '20px' }}>
-                            <Link to={'/login'} style={{ color: '#305090', textDecoration: 'none', width: '100%' }}>Log in</Link>
+                        <Button style={{ background: '#DEEDFF', color: '#305090', width: '15rem', marginBottom: '20px' }} onClick={goLogin}>
+                            Log in
                         </Button>
                 </Col>
                 <Col xs={12} sm={12} md={12} lg={12} xl={12} className="text-center">

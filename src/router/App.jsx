@@ -11,7 +11,6 @@ import { Register } from '../pages/auth/Register';
 
 import { Cart } from '../pages/Cart';
 import { ListProducts } from '../pages/ListProducts';
-import { Calendar } from '../pages/buyProduct/setDate';
 import { Alquiler } from '../pages/Alquiler';
 
 import { Datos } from './../pages/auth/profile/Datos';
@@ -19,6 +18,11 @@ import { Reservas } from './../pages/auth/profile/Reservas';
 import { Historial } from './../pages/auth/profile/Historial';
 import { GenerateHeader } from '../components/sections/Header';
 import { GenerateFooter } from '../components/sections/Footer';
+
+import { Calendar } from '../pages/buyProduct/pages/setDate';
+import { InfoBuyer } from '../pages/buyProduct/pages/InfoBuyer';
+import { UserForm } from '../pages/buyProduct/buyProgress';
+import { Bought } from '../pages/buyProduct/pages/Bought';
 
 
 export function App() {
@@ -39,8 +43,15 @@ export function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+
           <Route path="/productInfo/:productId" element={<ProductInfo />} />
+          
+          <Route path="/buyProgress" element={<UserForm />} />
           <Route path="/setDate" element={<Calendar />} />
+          <Route path="/infoBuyer" element={<InfoBuyer />} />
+          <Route path="/bought" element={<Bought />} />
+
+
           <Route path="/listProducts/:productsSearch" element={<ListProducts />} />
           <Route path="/alquiler/:typeID" element={<Alquiler />} />
           {/* Posible enlace para tipo de producto */}

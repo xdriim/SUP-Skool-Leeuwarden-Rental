@@ -12,15 +12,20 @@ import CheckIcon from '@mui/icons-material/Check';
 
 export const Calendar = () => {
   const [value, setValue] = useState(new Date());
-  const [highlightedDays, setHighlightedDays] = useState([1, 2, 13]);
+  const [highlightedDays, setHighlightedDays] = useState([1, 2, 13]); // ???
+
+  // console.log(value);
+  // Wed Apr 12 2023 15:02:42 GMT+0200 (hora de verano de Europa central)
+
+  
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <StaticDatePicker
         // mask='____/__/__'
         variant='static'
-        orientation='portrait'
+        orientation='landscape'
         value={value}
-        disableFuture
+        disablePast
         onChange={(newValue) => setValue(newValue)}
         renderInput={(params) => {
           <TextField {...params} />;

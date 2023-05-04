@@ -12,5 +12,45 @@
   },
   "langChanged": {
     "tran1": "Has cambiado el sitio web a español"
+  },
+  "contact": {
+    "tran1": "SUP Skool Leeuwarden",
+    "tran2": "Tineke y Anne Merkus",
+    "tran3": "Correo electrónico: info@supskoolleeuwarden.nl",
+    "tran4": "Número de teléfono: +31 58 2038399",
+    "tran5": "Número de la Cámara de Comercio: 57006741",
+    "tran6": "Número de identificación fiscal: NL001393314B19",
+    "tran7": "Contacta con Supskoolleeuwarden",
+    "tran8": "Nombre",
+    "tran9": "Correo electrónico",
+    "tran10": "Número de teléfono",
+    "tran11": "Asunto",
+    "tran12": "Mensaje",
+    "tran13": "Enviar"
+  },
+  "error": {
+    "tran1": "Página no encontrada",
+    "tran2": "Volver a la página de inicio"
+  },
+  "preAuth": {
+    "tran1": "Por favor, selecciona una de las opciones de abajo",
+    "tran2": "Iniciar sesión",
+    "tran3": "Continuar como invitado",
+    "tran4": "Todavia no tienes cuenta? ",
+    "tran5": "Create una!"
+  },
+  "login": {
+    "tran1": "Inicio de sesión",
+    "tran2": "Correo",
+    "tran3": "Contraseña",
+    "tran4": "Todavía no tienes cuenta?",
+    "tran5": "Continuar"
+  },
+  "register": {
+    "tran1": "Registro",
+    "tran2": "Nombre",
+    "tran3": "Correo",
+    "tran4": "Contraseña",
+    "tran5": "Continuar"
   }
 }

@@ -5,8 +5,8 @@ import { ProgressBar, Step } from "react-step-progress-bar";
 export const MultiStepProgressBar = (props) => {
   return (
     <ProgressBar
-      percent={(props.step + 1) * 25}
-      filledBackground="#664de5"
+      percent={(props.step) * 50}
+      filledBackground="#80ACE0"
       height="2px"
       style={{ margin: "auto" }}
     >
@@ -16,9 +16,9 @@ export const MultiStepProgressBar = (props) => {
             style={{
               height: "15px",
               width: "15px",
-              border: "1px solid lightgray",
+              border: "1px solid #80ACE0",
               borderRadius: "50%",
-              backgroundColor: `${accomplished ? "#664de5" : null}`
+              backgroundColor: `${accomplished ? "#80ACE0" : '#DEEDFF'}`
             }}
             className={`step ${accomplished ? "completed" : null}`}
           >
@@ -32,9 +32,9 @@ export const MultiStepProgressBar = (props) => {
             style={{
               height: "15px",
               width: "15px",
-              border: "1px solid lightgray",
+              border: "1px solid #80ACE0",
               borderRadius: "50%",
-              backgroundColor: `${accomplished ? "#664de5" : null}`
+              backgroundColor: `${accomplished ? "#80ACE0" : '#DEEDFF'}`
             }}
             className={`step ${accomplished ? "completed" : null}`}
           >
@@ -49,9 +49,9 @@ export const MultiStepProgressBar = (props) => {
               height: "15px",
               width: "15px",
 
-              border: "1px solid lightgray",
+              border: "1px solid #80ACE0",
               borderRadius: "50%",
-              backgroundColor: `${accomplished ? "#664de5" : null}`
+              backgroundColor: `${accomplished ? "#80ACE0" : '#DEEDFF'}`
             }}
             className={`step ${accomplished ? "completed" : null}`}
           >

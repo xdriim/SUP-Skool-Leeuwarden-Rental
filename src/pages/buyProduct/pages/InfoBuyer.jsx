@@ -12,9 +12,10 @@ export function InfoBuyer() {
     event.preventDefault();
     
     // Aquí puedes agregar tu lógica para enviar la información de inicio de sesión al servidor
-    // LocalStorage.setItem('user', JSON.parse())
+    // LocalStorage.setItem('user', JSON.stringify());
     
   };
+  
     return (
       <Container className='my-5'>
         <Row>

@@ -8,7 +8,12 @@ import { useNavigate  } from "react-router-dom";
 import { Route, Routes } from 'react-router-dom';
 import { Datos } from './profile/Datos';
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 export function Login() {
+  const { t } = useTranslation("global");
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -38,19 +43,19 @@ export function Login() {
                   <img src={logo} alt="logo" style={{ width: '10%' }} />
                 </div>
             
-                <h4 className='fw-bold mb-4'>Inicio de sesión</h4>
+                <h4 className='fw-bold mb-4'>{t("login.tran1")}</h4>
                   <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formBasicEmail" className='mb-4'>
-                        <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
+                        <Form.Control type="text" placeholder={t("login.tran2")} value={email} onChange={e => setEmail(e.target.value)} />
                     </Form.Group>
 
                     <Form.Group controlId="formBasicPassword" className='mb-4'>
-                        <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+                        <Form.Control type="password" placeholder={t("login.tran3")} value={password} onChange={e => setPassword(e.target.value)} />
                     </Form.Group>
 
-                    <Link to={'/register'} style={{ color: '#80ACE0' }}>Todavía no tienes cuenta?</Link>
+                    <Link to={'/register'} style={{ color: '#80ACE0' }}>{t("login.tran4")}</Link>
                     <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }} className='mt-3'>
-                        Continuar
+                        {t("login.tran5")}
                     </Button>
                     
                   </Form>

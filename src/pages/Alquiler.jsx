@@ -6,14 +6,19 @@ import sups from "../utils/sup.json";
 import "./../components/ProductGrid.module.css";
 import { useParams } from 'react-router-dom';
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 export function Alquiler() {
+  const { t } = useTranslation("global");
+  
     const [data, setData] = useState([]);
 
     useEffect(() => {
     fetch('http://monet.cat:8080/product')
       .then(response => response.json())
       .then(data => setData(data));
-  }, []);
+    }, []);
 
   console.log(data);
   const { typeID } = useParams();
@@ -66,6 +71,7 @@ export function Alquiler() {
               </Col>
             </Row>
             <Row>
+              {/* Dropdown: price  */}
               <Col>
                 <p style={{ textDecoration: 'underline' }}>Sort: by default</p>
               </Col>

@@ -11,7 +11,11 @@ import imagenPrueba1 from './../pages/img/IMG-20200526-WA0013-300x300.jpg';
 import imagenPrueba2 from './../pages/img/Rectangle 6bg.png';
 import imagenPrueba3 from './../pages/img/ticket.png';
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 export function ProductInfo() {
+    const { t } = useTranslation("global");
 
     const { productId } = useParams();
     console.log(productId);

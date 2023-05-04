@@ -20,7 +20,6 @@ import { useTranslation } from 'react-i18next';
 export function GenerateHeader() {
     const { t } = useTranslation("global");
     let location = useLocation();
-    console.log(location.pathname);
 
     const bgHeader = () =>{
         if(location.pathname.startsWith('/alquiler')){
@@ -31,7 +30,8 @@ export function GenerateHeader() {
     } 
 
     return(
-        <header style={{ background: bgHeader() ? '#DEEDFF' : 'white' }}>
+        <header style={{ background: bgHeader() ? '#DEEDFF' : 'white', 
+        boxShadow: '0px 5px 5px 0px rgba(0, 0, 0, 0.3), 0px 10px 10px 0px rgba(0, 0, 0, 0.2)' }}>
             <Navbar>
                 <Container>
                     <Nav>

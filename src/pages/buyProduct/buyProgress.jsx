@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+
 import {InfoBuyer} from "./pages/InfoBuyer";
 import {Calendar} from "./pages/setDate";
+import {Bought} from "./pages/Bought";
+
 import {MultiStepProgressBar} from "./../../components/MultiStepProgressBar";
 import { Row, Col, Container } from "react-bootstrap";
 
@@ -16,8 +19,10 @@ export const UserForm = () => {
   const PageDisplay = () => {
     if (page === 0)
       return <Calendar nextStep={nextStep} />;
-    else 
+    else if(page === 1)
       return <InfoBuyer nextStep={nextStep} />;
+    else 
+      return <Bought nextStep={nextStep} />;
   };
 
   return (

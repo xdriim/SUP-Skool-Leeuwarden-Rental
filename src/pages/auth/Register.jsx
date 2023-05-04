@@ -6,7 +6,12 @@ import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 
 import { useNavigate  } from "react-router-dom";
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 export function Register() {
+  const { t } = useTranslation("global");
+
   const [nombre, setNombre] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -36,22 +41,22 @@ export function Register() {
               <img src={logo} alt="logo" style={{ width: '10%' }} />
             </div>
             
-            <h4 className='fw-bold mb-4'>Registro</h4>
+            <h4 className='fw-bold mb-4'>{t("register.tran1")}</h4>
               <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicNombre" className='mb-4'>
-                    <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
+                    <Form.Control type="text" placeholder={t("register.tran2")} value={nombre} onChange={e => setNombre(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicEmail" className='mb-4'>
-                    <Form.Control type="text" placeholder="Correo" value={email} onChange={e => setEmail(e.target.value)} />
+                    <Form.Control type="text" placeholder={t("register.tran3")} value={email} onChange={e => setEmail(e.target.value)} />
                 </Form.Group>
 
                 <Form.Group controlId="formBasicPassword" className='mb-4'>
-                    <Form.Control type="password" placeholder="Contraseña" value={password} onChange={e => setPassword(e.target.value)} />
+                    <Form.Control type="password" placeholder={t("register.tran4")} value={password} onChange={e => setPassword(e.target.value)} />
                 </Form.Group>
 
                 <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
-                    Continuar
+                      {t("register.tran5")}
                 </Button>
               </Form>
           </Container>

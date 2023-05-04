@@ -5,6 +5,9 @@ import prod from './../pages/img/IMG-20200526-WA0013-300x300.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 export function Cart() {
   const cartArray = [{
     id: 1,

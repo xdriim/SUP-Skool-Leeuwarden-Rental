@@ -5,8 +5,12 @@ import React, { useEffect, useState } from 'react';
 import sups from "../utils/sup.json";
 import { useParams } from "react-router-dom";
 
+// Translation
+import { useTranslation } from 'react-i18next';
+
 
 export function ListProducts(props) {
+    const { t } = useTranslation("global");
 
     const { productsSearch } = useParams();
     console.log(productsSearch);

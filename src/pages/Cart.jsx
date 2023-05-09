@@ -4,11 +4,14 @@ import prod from './../pages/img/IMG-20200526-WA0013-300x300.jpg';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from "react-router-dom";
 
 // Translation
 import { useTranslation } from 'react-i18next';
 
 export function Cart() {
+  const navigate = useNavigate();
+
   const cartArray = [{
     id: 1,
     name: 'SUPBoard',
@@ -66,7 +69,10 @@ export function Cart() {
   const handleDescuento = event => {
     event.preventDefault();
     
-    
+  };
+
+  const comprar = event => {
+    navigate('/buyProgress');
   };
 
   return (
@@ -135,7 +141,7 @@ export function Cart() {
                 </Row>
               </Col>
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Button style={{ color: 'white', backgroundColor: '#E03A40', border: 'none', width: '100%' }}>Completar reserva</Button>
+                <Button style={{ color: 'white', backgroundColor: '#E03A40', border: 'none', width: '100%' }} onClick={comprar}>Completar reserva</Button>
               </Col>
             </Row>
           </Col>

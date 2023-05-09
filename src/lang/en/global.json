@@ -44,13 +44,18 @@
       "tran2": "Email",
       "tran3": "Password",
       "tran4": "Still don't have an account?",
-      "tran5": "Continue"
+      "tran5": "Continue",
+      "tran6": "Charging"
     },
     "register": {
       "tran1": "Register",
       "tran2": "Name",
       "tran3": "Email",
       "tran4": "Password",
-      "tran5": "Continue"
+      "tran5": "Continue",
+      "tran6": "Charging"
+    },
+    "productCard": {
+      "tran1": "from"
     }
 }

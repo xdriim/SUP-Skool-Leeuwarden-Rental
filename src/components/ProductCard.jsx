@@ -2,9 +2,11 @@ import { Card, Col, Button } from 'react-bootstrap';
 import cardStyle from "./ProductCard.module.css";
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+// Translation
+import { useTranslation } from 'react-i18next';
 
 export function ProductCard({ product }) {
-  //const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
+  const { t } = useTranslation("global");
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -18,7 +20,7 @@ export function ProductCard({ product }) {
 
   return (
     <Col xs={12} sm={12} md={6} lg={6} xl={3} className="mb-4">
-      <Link to={`/productInfo/${product.id}`} style={{ color: '#305090', textDecoration: 'none' }}>
+      <Link to={`/productInfo/${product.productId}`} style={{ color: '#305090', textDecoration: 'none' }}>
         <Card className="sliderSup" style={{ 
           width: '16rem',
           transition: 'all 0.3s ease-in-out',
@@ -31,7 +33,7 @@ export function ProductCard({ product }) {
           <Card.Body>
             <Card.Title className={cardStyle.title}>{product.name}</Card.Title>
             <div className='d-flex justify-content-between'>
-              <p>from <span className={cardStyle.negrita}>{product.price}€</span></p>
+              <p>{t("productCard.tran1")} <span className={cardStyle.negrita}>{product.price}€</span></p>
             </div>
           </Card.Body>
         </Card>

@@ -1,7 +1,7 @@
 import { Container, Row, Col, Button, ButtonGroup, Image } from 'react-bootstrap';
-import sups from "../utils/sup.json";
+//import sups from "../utils/sup.json";
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
@@ -17,11 +17,22 @@ import { useTranslation } from 'react-i18next';
 export function ProductInfo() {
     const { t } = useTranslation("global");
 
+    const [products, setData] = useState([]);
     const { productId } = useParams();
     console.log(productId);
-    const product = sups.find((product) => product.id.toString() === productId);
 
-    const [imageGrandeUrl, setImageGrandeUrl] = useState(product.imgUrl);
+    useEffect(() => {
+    fetch('http://monet.cat:8080/product/1')
+      .then(response => response.json())
+      .then(products => setData(products));
+    }, []);
+
+    console.log(products);
+    
+    const product = products.find((product) => product.productId.toString() === productId);
+    console.log(product);
+
+    const [imageGrandeUrl, setImageGrandeUrl] = useState(product.images[0]);
 
     const handleClick = (event) => {
         setImageGrandeUrl(event.target.src);

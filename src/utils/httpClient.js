@@ -1,4 +1,4 @@
-const API = "http://monet.cat:8080/";
+const API = "https://monet.cat:8080/";
 
 export async function get(path) {
   const result = await fetch(API + path, {

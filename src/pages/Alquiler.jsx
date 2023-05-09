@@ -1,9 +1,8 @@
 import { ProductCard } from "./../components/ProductCard";
-import { Container, Row, Col, Button } from 'react-bootstrap';
+import { Container, Row, Col, Button, Dropdown } from 'react-bootstrap';
 import React, { useEffect, useState } from 'react';
-// , { useEffect, useState }
-import sups from "../utils/sup.json";
-import "./../components/ProductGrid.module.css";
+
+//import sups from "../utils/sup.json";
 import { useParams } from 'react-router-dom';
 
 // Translation
@@ -12,15 +11,15 @@ import { useTranslation } from 'react-i18next';
 export function Alquiler() {
   const { t } = useTranslation("global");
   
-    const [data, setData] = useState([]);
+    const [products, setData] = useState([]);
 
     useEffect(() => {
     fetch('http://monet.cat:8080/product')
       .then(response => response.json())
-      .then(data => setData(data));
+      .then(products => setData(products.data));
     }, []);
 
-  console.log(data);
+  console.log(products);
   const { typeID } = useParams();
   
   const [type, setType] = useState(typeID);
@@ -45,11 +44,11 @@ export function Alquiler() {
   const alquilerArray = () =>{
     switch (type) {
       case 'SUP':
-        return sups
+        return products.filter(i => i.productTypeId === 1 );
       case 'Canoes':
-        return sups.filter(i => i.id > 2 );
+        return products.filter(i => i.productTypeId === 2 );
       case 'Bonos':
-        return sups.filter(i => i.id < 2 );
+        return products.filter(i => i.productTypeId === 3 );
       default:
         break;
     }
@@ -74,6 +73,17 @@ export function Alquiler() {
               {/* Dropdown: price  */}
               <Col>
                 <p style={{ textDecoration: 'underline' }}>Sort: by default</p>
+                <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ display: 'none' }}>
+                  Sort: by default
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
               </Col>
             </Row>
           </Col>

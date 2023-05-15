@@ -5,7 +5,7 @@ import {Calendar} from "./pages/setDate";
 import {Bought} from "./pages/Bought";
 
 import {MultiStepProgressBar} from "./../../components/MultiStepProgressBar";
-import { Row, Col, Container } from "react-bootstrap";
+import { Row, Col, Container, Button } from "react-bootstrap";
 
 export const UserForm = () => {
   //For manageing state of multi steps Form
@@ -26,37 +26,39 @@ export const UserForm = () => {
   };
 
   return (
-    <Container className="mt-5">
+    <Container className="my-5">
       <div style={{ margin: "auto", width: "75%" }}>
         <MultiStepProgressBar step={page} />
       </div>
-      <div>
-        <div>{PageDisplay()}</div>
-        <div className="userForm-container-footer">
-          <button
-            onClick={() => {
-              if (page === 2) {
-                console.log("Last page");
-              } else {
-                setPage((currPage) => currPage + 1);
-              }
-            }}
-          >
-            Adelante
-          </button>
-          <button
-            onClick={() => {
-              if (page === 0) {
-                console.log("First page");
-              } else {
-                setPage((currPage) => currPage - 1);
-              }
-            }}
+      <Row>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12}>
+          {PageDisplay()}
+        </Col>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} className="d-flex justify-content-between">
+          <Button style={{ visibility: page === 0 ? 'hidden' : 'visible' }}
+          onClick={() => {
+            if (page === 0) {
+              console.log("First page");
+            } else {
+              setPage((currPage) => currPage - 1);
+            }
+          }}
           >
             Atrás
-          </button>
-        </div>
-      </div>
+          </Button>
+          <Button style={{ visibility: page === 2 ? 'hidden' : 'visible' }}
+          onClick={() => {
+            if (page === 2) {
+              console.log("Last page");
+            } else {
+              setPage((currPage) => currPage + 1);
+            }
+          }}
+          >
+            Adelante
+          </Button>
+        </Col>
+      </Row>
     </Container>
   );
 };

@@ -1,6 +1,8 @@
 import { TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 import { useState } from "react";
-import { Container, Row, Col, Form, Button, ProgressBar, Table } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
+import { Select, MenuItem } from "@material-ui/core";
+import { set } from "lodash";
 
 const WEEKDAYS = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 
@@ -21,7 +23,27 @@ export const Calendar = () => {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  const [selectedDay, setSelectedDay] = useState(today);
+
+  const [selectedDay, setSelectedDay] = useState(today.getDate());
+
+  const selected = [selectedDay, currentMonth, currentYear];
+
+  // En el cuerpo de la función Calendar:
+  const years = Array.from({ length: 10 }, (_, index) => currentYear - 5 + index);
+  const months = [
+    "Enero",
+    "Febrero",
+    "Marzo",
+    "Abril",
+    "Mayo",
+    "Junio",
+    "Julio",
+    "Agosto",
+    "Septiembre",
+    "Octubre",
+    "Noviembre",
+    "Diciembre",
+  ];
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
@@ -52,19 +74,35 @@ export const Calendar = () => {
       setCurrentMonth(currentMonth - 1);
     }
   };
-
-  const handleDayClick = (day) => {
-    setSelectedDay(day);
-  };
   
   return (
     <Container className="mt-5">
-      <Row>
+      <Row className="text-center">
         <Col>
           <Button onClick={handlePrevMonth} className="w-25">{"<"}</Button>
         </Col>
         <Col>
-          <h2>{`${currentMonth + 1} - ${currentYear}`}</h2>
+          <Select
+            value={currentMonth}
+            onChange={(event) => setCurrentMonth(event.target.value)}
+          >
+            {months.map((month, index) => (
+              <MenuItem key={month} value={index}>
+                {month}
+              </MenuItem>
+            ))}
+          </Select>
+          <Select
+            value={currentYear}
+            onChange={(event) => setCurrentYear(event.target.value)}
+          >
+            {years.map((year) => (
+              <MenuItem key={year} value={year}>
+                {year}
+              </MenuItem>
+            ))}
+          </Select>
+
         </Col>
         <Col>
           <Button onClick={handleNextMonth} className="w-25">{">"}</Button>
@@ -82,12 +120,12 @@ export const Calendar = () => {
           {weeks.map((week, weekIndex) => (
             <TableRow key={`week-${weekIndex}`}>
               {week.map((day, dayIndex) => (
-                <TableCell key={`day-${dayIndex}`}>
+                <TableCell key={`day-${dayIndex}`} onClick={(event) => setSelectedDay(day)}>
                   {day > 0 && day <= daysInMonth ? (
                     <>
                       {day}
-                      {day === 12 && (
-                        <div style={{ backgroundColor: 'red' }} className="w-25">
+                      {day === selectedDay && (
+                        <div style={{ backgroundColor: 'red' }}>
                           <div>*</div>
                         </div>
                       )}

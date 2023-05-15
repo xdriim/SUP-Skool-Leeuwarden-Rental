@@ -51,7 +51,7 @@ export function GenerateHeader() {
                     </Nav> 
                     
                     <Navbar.Brand href="/">
-                        <img src={logo} alt="Logo" style={{ width: '9rem' }}/>
+                        <img src={logo} alt="Logo" style={{ width: '5rem' }}/>
                     </Navbar.Brand>
                     
                     <Nav>

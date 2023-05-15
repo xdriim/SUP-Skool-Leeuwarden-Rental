@@ -5,24 +5,34 @@ import React, { useEffect, useState } from 'react';
 //import sups from "../utils/sup.json";
 import { useParams } from 'react-router-dom';
 
+// Spinner de carga
+import { DotLoader } from "react-spinners";
+
 // Translation
 import { useTranslation } from 'react-i18next';
 
 export function Alquiler() {
   const { t } = useTranslation("global");
+  const [isLoading, setIsLoading] = useState(true);
   
-    const [products, setData] = useState([]);
+  const [products, setData] = useState([]);
 
     useEffect(() => {
     fetch('http://monet.cat:8080/product')
       .then(response => response.json())
-      .then(products => setData(products.data));
+      .then((products) => {
+        setData(products.data);
+        setIsLoading(false);
+    })
+    .catch((error) => console.log(error));
     }, []);
+
 
   console.log(products);
   const { typeID } = useParams();
   
   const [type, setType] = useState(typeID);
+  const [filter, setFilter] = useState('default');
   // Type puede venir definido anteriormente en el desplegable de alquiler
 
   function changeType(e){
@@ -41,18 +51,31 @@ export function Alquiler() {
     }
   }
 
-  const alquilerArray = () =>{
-    switch (type) {
-      case 'SUP':
-        return products.filter(i => i.productTypeId === 1 );
-      case 'Canoes':
-        return products.filter(i => i.productTypeId === 2 );
-      case 'Bonos':
-        return products.filter(i => i.productTypeId === 3 );
-      default:
-        break;
-    }
-  };
+    const alquilerArray = () =>{
+      let filteredProducts;
+      switch (type) {
+        case 'SUP':
+          filteredProducts = products.filter(i => i.productTypeId === 1 );
+          break;
+        case 'Canoes':
+          filteredProducts = products.filter(i => i.productTypeId === 2 );
+          break;
+        case 'Bonos':
+          filteredProducts = products.filter(i => i.productTypeId === 3 );
+          break;
+        default:
+          filteredProducts = products;
+          break;
+      }
+
+      if (filter === 'priceUp') {
+        filteredProducts.sort((a, b) => a.price - b.price);
+      } else if (filter === 'priceDown'){
+        filteredProducts.sort((a, b) => b.price - a.price);
+      }
+
+      return filteredProducts;
+    };
     
   return (
     <Container className='my-5'>
@@ -60,28 +83,27 @@ export function Alquiler() {
           <Col xs={12} sm={12} md={12} lg={12} xl={12} className="d-flex justify-content-between mb-3">
             <Row>
               <Col>
-                <Button id="bSUP" onClick={(e)=> changeType(e)} style={{ background: type === 'SUP' ? 'red' : 'blue' }}>SUP</Button>
+                <Button id="bSUP" onClick={(e)=> changeType(e)} style={{ background: type === 'SUP' ? 'red' : 'blue', borderColor: type === 'SUP' ? 'red' : 'blue' }}>SUP</Button>
               </Col>
               <Col>
-                <Button id="bCanoes" onClick={(e)=> changeType(e)} style={{ background: type === 'Canoes' ? 'red' : 'blue' }}>Canoes</Button>
+                <Button id="bCanoes" onClick={(e)=> changeType(e)} style={{ background: type === 'Canoes' ? 'red' : 'blue', borderColor: type === 'Canoes' ? 'red' : 'blue' }}>Canoes</Button>
               </Col>
               <Col>
-                <Button id="bBonos" onClick={(e)=> changeType(e)} style={{ background: type === 'Bonos' ? 'red' : 'blue' }}>Bonos</Button>
+                <Button id="bBonos" onClick={(e)=> changeType(e)} style={{ background: type === 'Bonos' ? 'red' : 'blue', borderColor: type === 'Bonos' ? 'red' : 'blue' }}>Bonos</Button>
               </Col>
             </Row>
             <Row>
               {/* Dropdown: price  */}
               <Col>
-                <p style={{ textDecoration: 'underline' }}>Sort: by default</p>
                 <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic" style={{ display: 'none' }}>
-                  Sort: by default
+                  <Dropdown.Toggle style={{ backgroundColor: 'transparent', color: 'black', borderColor: 'transparent', textDecoration: 'underline' }} >
+                  Sort: by {filter}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('default')}>Default</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('priceUp')}>Price: low to high</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('priceDown')}>Price: high to low</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
@@ -89,9 +111,13 @@ export function Alquiler() {
           </Col>
           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
             <Row>
-                {alquilerArray().map((product) => (
-                  <ProductCard key={product.id} id={product.id} product={product} />
-                ))}
+            {isLoading ? (
+            <DotLoader color={"#80ACE0"} loading={true}  size={25} />
+            ) : (
+              alquilerArray().map((product) => (
+                <ProductCard key={product.id} id={product.id} product={product} />
+              ))
+            )}
             </Row>
           </Col>
         </Row>

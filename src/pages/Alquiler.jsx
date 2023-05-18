@@ -102,8 +102,8 @@ export function Alquiler() {
 
                   <Dropdown.Menu>
                     <Dropdown.Item onClick={() => setFilter('default')}>Default</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFilter('priceUp')}>Price: low to high</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFilter('priceDown')}>Price: high to low</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('price: low to high')}>Price: low to high</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('price: high to down')}>Price: high to low</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>

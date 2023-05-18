@@ -17,19 +17,23 @@ import { useTranslation } from 'react-i18next';
 export function ProductInfo() {
     const { t } = useTranslation("global");
 
-    const [products, setData] = useState([]);
+    const [product, setProduct] = useState();
     const { productId } = useParams();
     console.log(productId);
 
     useEffect(() => {
-    fetch('http://monet.cat:8080/product/1')
-      .then(response => response.json())
-      .then(products => setData(products));
-    }, []);
+        fetch(`http://monet.cat:8080/product/${productId}`)
+          .then(response => response.json())
+          .then(data => setProduct(data))
+          .catch(error => {
+            console.error('Error fetching product:', error);
+            setProduct(null);
+          });
+      }, []);
 
-    console.log(products);
+    console.log(product);
     
-    const product = products.find((product) => product.productId.toString() === productId);
+    //const product = products.find((product) => product.productId.toString() === productId);
     console.log(product);
 
     const [imageGrandeUrl, setImageGrandeUrl] = useState(product.images[0]);

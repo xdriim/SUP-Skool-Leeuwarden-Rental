@@ -14,6 +14,9 @@ import { useLocation } from "react-router-dom";
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 // Aquí debe entrar la cesta para modificar un número al lado de faShoppingCart
 
@@ -65,6 +68,7 @@ export function GenerateHeader() {
                     </Nav> 
                 </Container>
             </Navbar>
+            <ToastContainer></ToastContainer>
         </header>
     )
 }

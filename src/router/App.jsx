@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom';
 import {Home} from '../pages/Home';
 import {ProductInfo} from '../pages/ProductInfo';
 import {Contact} from '../pages/Contact';
-import {About} from '../pages/About';
 import {Error} from '../pages/Error';
 
 import { PreAuth } from '../pages/PreAuth';
@@ -10,7 +9,6 @@ import { Login } from '../pages/auth/Login';
 import { Register } from '../pages/auth/Register';
 
 import { Cart } from '../pages/Cart';
-import { ListProducts } from '../pages/ListProducts';
 import { Alquiler } from '../pages/Alquiler';
 
 import { Datos } from './../pages/auth/profile/Datos';
@@ -34,10 +32,8 @@ export function App() {
         <Routes>
           {/* Header */}
           <Route exact path="/" element={<GenerateHeader />} />
-          <Route exact path="/about" element={<GenerateHeader />} />
           <Route exact path="/contact" element={<GenerateHeader />} />
           <Route exact path="/productInfo/:productId" element={<GenerateHeader />} />
-          <Route exact path="/listProducts/:productsSearch" element={<GenerateHeader />} />
           <Route exact path="/alquiler/:typeID" element={<GenerateHeader />} />
           <Route exact path="/cart" element={<GenerateHeader />} />
           <Route exact path="/preAuth" element={<GenerateHeader />} />
@@ -46,7 +42,6 @@ export function App() {
         </Routes>
         <Routes>
           <Route exact path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
 
           <Route path="/productInfo/:productId" element={<ProductInfo />} />
@@ -57,7 +52,6 @@ export function App() {
           <Route path="/bought" element={<Bought />} /> */}
 
 
-          <Route path="/listProducts/:productsSearch" element={<ListProducts />} />
           <Route path="/alquiler/:typeID" element={<Alquiler />} />
           {/* Posible enlace para tipo de producto */}
           {/* <Route path='/cart' element={<Cart />} /> */}

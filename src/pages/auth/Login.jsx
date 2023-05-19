@@ -22,16 +22,38 @@ export function Login() {
   
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const handleSubmit = async (values, { setSubmitting }, event) => {
-    // Establecer el valor de isSubmitting en true para deshabilitar el botón de envío y los campos del formulario.
-    
-    
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const email = formData.get('email');
   
-    // Enviar los datos al servidor.
-    const formData = new FormData(document.getElementById('formLogin'));
-    console.log("Hola");
+  // Obtener los productos de la carta
+  const storedCart = localStorage.getItem('cart');
 
-   
+    fetch('http://monet.cat:8080/user/login', {
+      method: 'POST',
+      body: formData,
+    })
+      .then(response => response.json())
+      .then(data => {
+        if (data.rc === 0) {
+          setLoggedIn(true);
+          if(storedCart){
+            // Guardar los productos de la carta en el localStorage junto con el email del usuario
+            localStorage.setItem('cart', JSON.stringify({ email, isLoggedIn , storedCart }));
+          }else{
+            localStorage.setItem('cart', JSON.stringify({ email, isLoggedIn }));
+          }
+          navigate('/');
+        } else {
+          const error = document.getElementById('error');
+          error.innerHTML = data.rc_message;
+          error.style.display = 'block';
+        }
+      })
+      .catch(error => {
+        alert(`FATAL: ${error.message}`);
+      });
   };
   
 
@@ -44,59 +66,27 @@ export function Login() {
                   <FontAwesomeIcon icon={faLeftLong} />
                 </Button> 
                 <div style={{ textAlign: 'center' }}>
-                  <img src={logo} alt="logo" style={{ width: '10%' }} />
+                  <img src={logo} alt="logo" style={{ width: '10%' }} onClick={ () => navigate('/')} />
                 </div>
             
                 <h4 className='fw-bold mb-4' style={{ fontFamily: 'Montserrat' }}>{t("login.tran1")}</h4>
-                <Formik 
-                  initialValues={{
-                    nombre: '',
-                    correo: '',
-                    contra: ''
-                  }}
-                  validate={(valores) => {
-                    let errores = {};
+                
 
-                    // Validación nombre
-                    if(!valores.nombre){
-                      errores.nombre = 'Por favor ingrese un nombre'
-                    } else if(!/^[a-zA-ZÀ-ÿ\s]{1,40}$/.test(valores.nombre)){
-                      errores.nombre = 'El nombre solo puede contener letras y espacios'
-                    }
-
-                    // Validación correo
-                    if(!valores.correo){
-                      errores.correo = 'Por favor ingrese un correo'
-                    } else if(!/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(valores.correo)){
-                      errores.correo = 'El nombre solo puede contener letras, números, puntos, guiones y guión bajo.'
-                    }
-
-                    return errores;
-                  }}
-                  onSubmit={handleSubmit}
-                  >
-                  {(formikProps) => (
-                    <Form id='formLogin' onSubmit={formikProps.handleSubmit}>
-                      <Form.Group controlId="formBasicEmail" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
-                          <Field name="correo">
-                            {({ field }) => (
-                              <Form.Control type="text" name='email' placeholder={t("login.tran2")} { ...field }/>
-                            )}
-                          </Field>
-                          <ErrorMessage name="correo" component="div" className="text-danger" />
+                <Form id='formLogin' onSubmit={handleSubmit}>
+                      <Form.Group controlId="formBasicEmail" className='mb-4' style={{ fontFamily: 'Montserrat' }}>                          
+                          <Form.Control type="text" name='email' placeholder={t("login.tran2")} />                            
                       </Form.Group>
 
                       <Form.Group controlId="formBasicPassword" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
                           <Form.Control type="password" name='password_hash' placeholder={t("login.tran3")} />
                       </Form.Group>
+                      <p style={{ display: 'none', color: 'red' }} id='error'></p>
 
                       <Link to={'/register'} style={{ color: '#80ACE0', fontFamily: 'Montserrat' }}>{t("login.tran4")}</Link>
-                      <Button type="submit" disabled={formikProps.isSubmitting} style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%', fontFamily: 'Montserrat' }} className='mt-3'>
-                        {formikProps.isSubmitting ? t("login.tran6") : t("login.tran5")}
+                      <Button type="submit"  style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%', fontFamily: 'Montserrat' }} className='mt-3'>
+                         {t("login.tran5")}
                       </Button>
                     </Form>
-                  )}
-                </Formik>
                 
               </Container>
 

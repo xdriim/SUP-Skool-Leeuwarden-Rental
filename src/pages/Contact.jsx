@@ -27,7 +27,7 @@ export function Contact() {
           <Col className='me-5'>
             <Row>
               <Col>
-                <div className='mb-5 p-5' style={{ backgroundColor: '#DEEDFF', width: '100%', height: '300px' }}>
+                <div className='mb-5 p-5' style={{ backgroundColor: '#DEEDFF', width: '100%', height: 'auto' }}>
                   <p style={{ fontFamily: 'Montserrat' }}>{t("contact.tran1")}</p>
                   <p style={{ fontFamily: 'Montserrat' }}>{t("contact.tran2")}</p>
                   <p style={{ fontFamily: 'Montserrat' }}>{t("contact.tran3")}</p>
@@ -38,7 +38,7 @@ export function Contact() {
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col className='mb-5'>
                 <div style={{width: "100%", height: '300px', border: '3px solid green'}}>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2390.165808339287!2d5.799561499999999!3d53.1969425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c8fe852048a47d%3A0x79daaa0e14e407e2!2sStadsstrand%20Leeuwarden!5e0!3m2!1sca!2ses!4v1683034719592!5m2!1sca!2ses"
                  width="100%" height="100%" loading="lazy" title='mapa'></iframe>

@@ -24,11 +24,10 @@ export function Cart({ nextStep }) {
   // Aquí debe de ir toda la lógica de carrito de vaciar cesta y quitar producto
 
   // Lógica descuento
-  const [descuento, setDescuento] = useState('');
-  const handleDescuento = event => {
-    event.preventDefault();
-    
-  };
+  // const [descuento, setDescuento] = useState('');
+  // const handleDescuento = event => {
+  //   event.preventDefault();
+  // };
 
   const removeFromCart = (productId) => {
     const updatedCart = cart.filter((product) => product.productId !== productId);
@@ -93,7 +92,7 @@ export function Cart({ nextStep }) {
           </Col>
             
             {/* Aquí va el input de descuento */}
-            <Col xs={6} sm={6} md={6} lg={6} xl={6}>
+            {/* <Col xs={6} sm={6} md={6} lg={6} xl={6}>
               <Form onSubmit={handleDescuento}>
                 <Form.Group controlId="formBasicNombre" className='mt-4' >
                     <Form.Control type="text" placeholder="SUSCRIPCIÓN / CÓDIGO DESCUENTO" value={descuento} onChange={e => setDescuento(e.target.value)} 
@@ -101,7 +100,7 @@ export function Cart({ nextStep }) {
                     className='ps-4'  />
                 </Form.Group>
               </Form>
-            </Col>
+            </Col> */}
         </Row>
     </Container>
   );

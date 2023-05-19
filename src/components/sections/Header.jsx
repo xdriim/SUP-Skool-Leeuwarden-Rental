@@ -1,4 +1,4 @@
-import React, { useTransition, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './../../pages/img/LogoLeeuwarden.png';
 import "./Header.module.css";
 
@@ -32,11 +32,35 @@ export function GenerateHeader() {
         }
     } 
 
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [email, setEmail] = useState('');
+
+    function checkCartElementExists(elementKey) {
+        const storedCart = localStorage.getItem('cart');
+        if (storedCart) {
+          const parsedCart = JSON.parse(storedCart);
+          return elementKey in parsedCart;
+        }
+        return false;
+      }
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+        if(checkCartElementExists('isLoggedIn')){
+            setLoggedIn(true);
+            const parsedCart = JSON.parse(storedCart);
+            const name = parsedCart.email.split('@')[0];
+            setEmail(name);
+        }
+    }
+  }, []);
+
 
     return(
         <header style={{ background: bgHeader() ? '#DEEDFF' : 'white', 
         boxShadow: '0px 5px 5px 0px rgba(0, 0, 0, 0.3), 0px 10px 10px 0px rgba(0, 0, 0, 0.2)' }}>
-            <Navbar>
+            <Navbar expand="lg">
                 <Container>
                     <Navbar.Brand href="/">
                         <img src={logo} alt="Logo" style={{ width: '5rem' }}/>
@@ -59,6 +83,9 @@ export function GenerateHeader() {
                     </Nav>
                         
                     <Nav>
+                        {isLoggedIn && (
+                            <div style={{ lineHeight: '40px' }}>Bienvenido, {email}</div>
+                            )}
                         <Nav.Link href="/preauth">
                             <FontAwesomeIcon icon={faUser} />
                         </Nav.Link>

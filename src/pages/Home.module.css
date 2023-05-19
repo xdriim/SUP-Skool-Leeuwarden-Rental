@@ -1,7 +1,7 @@
 
-  .bg {
+.bg {
     background-image: url("./img/Rectangle\ 6bg.png");
-    height: 100vh;
+    height: max-content;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

@@ -32,7 +32,7 @@ export function Alquiler() {
   const { typeID } = useParams();
   
   const [type, setType] = useState(typeID);
-  const [filter, setFilter] = useState('default');
+  const [filter, setFilter] = useState('Sort by: default');
   // Type puede venir definido anteriormente en el desplegable de alquiler
 
   function changeType(e){
@@ -68,9 +68,9 @@ export function Alquiler() {
           break;
       }
 
-      if (filter === 'priceUp') {
+      if (filter === 'Price: low to high') {
         filteredProducts.sort((a, b) => a.price - b.price);
-      } else if (filter === 'priceDown'){
+      } else if (filter === 'Price: high to low'){
         filteredProducts.sort((a, b) => b.price - a.price);
       }
 
@@ -83,27 +83,27 @@ export function Alquiler() {
           <Col xs={12} sm={12} md={12} lg={12} xl={12} className="d-flex justify-content-between mb-3">
             <Row>
               <Col>
-                <Button id="bSUP" onClick={(e)=> changeType(e)} style={{ background: type === 'SUP' ? 'red' : 'blue', borderColor: type === 'SUP' ? 'red' : 'blue' }}>SUP</Button>
+                <Button id="bSUP" onClick={(e)=> changeType(e)} style={{ background: type === 'SUP' ? '#80ACE0' : 'white', borderColor:  '#80ACE0', fontWeight: type === 'SUP' ? 'bold' : 'normal', color: '#305090', fontFamily: 'Montserrat'}}>SUP</Button>
               </Col>
               <Col>
-                <Button id="bCanoes" onClick={(e)=> changeType(e)} style={{ background: type === 'Canoes' ? 'red' : 'blue', borderColor: type === 'Canoes' ? 'red' : 'blue' }}>Canoes</Button>
+                <Button id="bCanoes" onClick={(e)=> changeType(e)} style={{ background: type === 'Canoes' ? '#80ACE0' : 'white', borderColor: '#80ACE0', fontWeight: type === 'Canoes' ? 'bold' : 'normal', color: '#305090', fontFamily: 'Montserrat' }}>Canoes</Button>
               </Col>
               <Col>
-                <Button id="bBonos" onClick={(e)=> changeType(e)} style={{ background: type === 'Bonos' ? 'red' : 'blue', borderColor: type === 'Bonos' ? 'red' : 'blue' }}>Bonos</Button>
+                <Button id="bBonos" onClick={(e)=> changeType(e)} style={{ background: type === 'Bonos' ? '#80ACE0' : 'white', borderColor: '#80ACE0', fontWeight: type === 'Bonos' ? 'bold' : 'normal', color: '#305090', fontFamily: 'Montserrat' }}>Bonos</Button>
               </Col>
             </Row>
             <Row>
               {/* Dropdown: price  */}
               <Col>
                 <Dropdown>
-                  <Dropdown.Toggle style={{ backgroundColor: 'transparent', color: 'black', borderColor: 'transparent', textDecoration: 'underline' }} >
-                  Sort: by {filter}
+                  <Dropdown.Toggle className="fs-5" style={{ backgroundColor: 'transparent', color: 'black', borderColor: 'transparent', textDecoration: 'underline', fontFamily: 'Montserrat' }} >
+                  {filter}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setFilter('default')}>Default</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFilter('price: low to high')}>Price: low to high</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFilter('price: high to down')}>Price: high to low</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('Sort by: Default')} style={{ fontFamily: 'Montserrat' }}>Sort by: Default</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('Price: low to high')} style={{ fontFamily: 'Montserrat' }}>Price: low to high</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('Price: high to low')} style={{ fontFamily: 'Montserrat' }}>Price: high to low</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>
@@ -115,7 +115,7 @@ export function Alquiler() {
             <DotLoader color={"#80ACE0"} loading={true}  size={25} />
             ) : (
               alquilerArray().map((product) => (
-                <ProductCard key={product.id} id={product.id} product={product} />
+                <ProductCard key={product.productId} id={product.productId} product={product} />
               ))
             )}
             </Row>

@@ -50,10 +50,12 @@
   "register": {
     "tran1": "Registro",
     "tran2": "Nombre",
-    "tran3": "Correo",
-    "tran4": "Contraseña",
-    "tran5": "Continuar",
-    "tran6": "Cargando"
+    "tran3": "Apellido",
+    "tran4": "Correo",
+    "tran5": "Contraseña",
+    "tran6": "Confirmar contraseña",
+    "tran7": "Continuar",
+    "tran8": "Cargando"
   },
   "productCard": {
     "tran1": "desde"

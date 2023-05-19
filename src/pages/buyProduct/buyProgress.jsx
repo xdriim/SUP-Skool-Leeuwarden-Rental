@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import {InfoBuyer} from "./pages/InfoBuyer";
-import {Calendar} from "./pages/setDate";
+import {Cart} from "./../Cart";
 import {Bought} from "./pages/Bought";
 
 import {MultiStepProgressBar} from "./../../components/MultiStepProgressBar";
@@ -18,7 +18,7 @@ export const UserForm = () => {
 
   const PageDisplay = () => {
     if (page === 0)
-      return <Calendar nextStep={nextStep} />;
+      return <Cart nextStep={nextStep} />;
     else if(page === 1)
       return <InfoBuyer nextStep={nextStep} />;
     else 
@@ -34,30 +34,7 @@ export const UserForm = () => {
         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
           {PageDisplay()}
         </Col>
-        <Col xs={12} sm={12} md={12} lg={12} xl={12} className="d-flex justify-content-between">
-          <Button style={{ visibility: page === 0 ? 'hidden' : 'visible' }}
-          onClick={() => {
-            if (page === 0) {
-              console.log("First page");
-            } else {
-              setPage((currPage) => currPage - 1);
-            }
-          }}
-          >
-            Atrás
-          </Button>
-          <Button style={{ visibility: page === 2 ? 'hidden' : 'visible' }}
-          onClick={() => {
-            if (page === 2) {
-              console.log("Last page");
-            } else {
-              setPage((currPage) => currPage + 1);
-            }
-          }}
-          >
-            Adelante
-          </Button>
-        </Col>
+       
       </Row>
     </Container>
   );

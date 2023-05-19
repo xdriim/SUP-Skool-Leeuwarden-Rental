@@ -1,8 +1,8 @@
-import React, { useTransition } from 'react';
+import React, { useTransition, useState } from 'react';
 import logo from './../../pages/img/LogoLeeuwarden.png';
 import "./Header.module.css";
 
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown, Collapse  } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
@@ -32,36 +32,37 @@ export function GenerateHeader() {
         }
     } 
 
+
     return(
         <header style={{ background: bgHeader() ? '#DEEDFF' : 'white', 
         boxShadow: '0px 5px 5px 0px rgba(0, 0, 0, 0.3), 0px 10px 10px 0px rgba(0, 0, 0, 0.2)' }}>
             <Navbar>
                 <Container>
-                    <Nav>
-                        <NavDropdown
-                        id="nav-dropdown-dark-example"
-                        title={t('header.tran1')}
-                        menuVariant="dark">
-                            {/* No recargar de esta manera */}
-                            <NavDropdown.Item href="/alquiler/SUP">{t("header.tran2")}</NavDropdown.Item>
-                            <NavDropdown.Item href="/alquiler/Canoes">{t("header.tran3")}</NavDropdown.Item>
-                            <NavDropdown.Item href="/alquiler/Bonos">{t("header.tran4")}</NavDropdown.Item>
-                        </NavDropdown>
-                        
-                        <Nav.Link href="/contact">
-                            <p>{t('header.tran5')}</p>
-                        </Nav.Link>
-                    </Nav> 
-                    
                     <Navbar.Brand href="/">
                         <img src={logo} alt="Logo" style={{ width: '5rem' }}/>
                     </Navbar.Brand>
                     
                     <Nav>
+                    <NavDropdown
+                        id="nav-dropdown-dark-example"
+                        title={<span style={{ fontFamily: 'Montserrat' }} className='fs-2'>{t('header.tran1')}</span>}
+                        menuVariant="dark" style={{ fontFamily: 'Montserrat' }}>
+                            {/* No recargar de esta manera */}
+                            <NavDropdown.Item href="/alquiler/SUP" style={{ fontFamily: 'Montserrat' }}>{t("header.tran2")}</NavDropdown.Item>
+                            <NavDropdown.Item href="/alquiler/Canoes" style={{ fontFamily: 'Montserrat' }}>{t("header.tran3")}</NavDropdown.Item>
+                            <NavDropdown.Item href="/alquiler/Bonos" style={{ fontFamily: 'Montserrat' }}>{t("header.tran4")}</NavDropdown.Item>
+                        </NavDropdown>
+                        
+                        <Nav.Link href="/contact" >
+                            <p style={{ fontFamily: 'Montserrat' }} className='fs-2'>{t('header.tran5')}</p>
+                        </Nav.Link> 
+                    </Nav>
+                        
+                    <Nav>
                         <Nav.Link href="/preauth">
                             <FontAwesomeIcon icon={faUser} />
                         </Nav.Link>
-                        <Nav.Link href="/cart">
+                        <Nav.Link href="/buyProgress">
                             <FontAwesomeIcon icon={faShoppingCart} />
                         </Nav.Link>
                         <LanguageSwitcher></LanguageSwitcher>

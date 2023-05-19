@@ -19,37 +19,19 @@ export function Login() {
   function handleGoBack() {
     navigate(-1);
   }
+  
+  const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting }, event) => {
     // Establecer el valor de isSubmitting en true para deshabilitar el botón de envío y los campos del formulario.
-    setSubmitting(true);
+    
+    
   
     // Enviar los datos al servidor.
-    const formData = new FormData(document.getElementById('formLogin'))
-    try {
-      const response = await fetch('https://monet.cat:8080/user/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'multipart/*'
-        },
-        body: formData
-      });
-  
-      // Si la respuesta del servidor es exitosa, redirigir al usuario a la página de éxito y establecer isSubmitting en false.
-      if (response.ok) {
-        navigate('/datos');
-        setSubmitting(false);
-      } else {
-        // Si la respuesta del servidor no es exitosa, manejar el error y establecer isSubmitting en false.
-        const error = await response.json();
-        console.log(error);
-        setSubmitting(false);
-      }
-    } catch (error) {
-      // Si se produce un error al enviar los datos al servidor, manejar el error y establecer isSubmitting en false.
-      console.error(error);
-      setSubmitting(false);
-    }
+    const formData = new FormData(document.getElementById('formLogin'));
+    console.log("Hola");
+
+   
   };
   
 
@@ -65,7 +47,7 @@ export function Login() {
                   <img src={logo} alt="logo" style={{ width: '10%' }} />
                 </div>
             
-                <h4 className='fw-bold mb-4'>{t("login.tran1")}</h4>
+                <h4 className='fw-bold mb-4' style={{ fontFamily: 'Montserrat' }}>{t("login.tran1")}</h4>
                 <Formik 
                   initialValues={{
                     nombre: '',
@@ -93,10 +75,9 @@ export function Login() {
                   }}
                   onSubmit={handleSubmit}
                   >
-                  {(isSubmitting, errores) => (
-                    <Form id='formLogin'>
-                      <Form.Group controlId="formBasicEmail" className='mb-4'>
-                          
+                  {(formikProps) => (
+                    <Form id='formLogin' onSubmit={formikProps.handleSubmit}>
+                      <Form.Group controlId="formBasicEmail" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
                           <Field name="correo">
                             {({ field }) => (
                               <Form.Control type="text" name='email' placeholder={t("login.tran2")} { ...field }/>
@@ -105,13 +86,13 @@ export function Login() {
                           <ErrorMessage name="correo" component="div" className="text-danger" />
                       </Form.Group>
 
-                      <Form.Group controlId="formBasicPassword" className='mb-4'>
+                      <Form.Group controlId="formBasicPassword" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
                           <Form.Control type="password" name='password_hash' placeholder={t("login.tran3")} />
                       </Form.Group>
 
-                      <Link to={'/register'} style={{ color: '#80ACE0' }}>{t("login.tran4")}</Link>
-                      <Button type="submit" disabled={!isSubmitting} style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }} className='mt-3'>
-                        {isSubmitting ? t("login.tran5") : t("login.tran6")}
+                      <Link to={'/register'} style={{ color: '#80ACE0', fontFamily: 'Montserrat' }}>{t("login.tran4")}</Link>
+                      <Button type="submit" disabled={formikProps.isSubmitting} style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%', fontFamily: 'Montserrat' }} className='mt-3'>
+                        {formikProps.isSubmitting ? t("login.tran6") : t("login.tran5")}
                       </Button>
                     </Form>
                   )}

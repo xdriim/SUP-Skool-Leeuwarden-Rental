@@ -24,10 +24,13 @@ import { InfoBuyer } from '../pages/buyProduct/pages/InfoBuyer';
 import { UserForm } from '../pages/buyProduct/buyProgress';
 import { Bought } from '../pages/buyProduct/pages/Bought';
 
+import { GlobalStyles } from '../components/GlobalStyles';
+
 
 export function App() {
   return (
     <div>
+      <GlobalStyles />
         <Routes>
           {/* Header */}
           <Route exact path="/" element={<GenerateHeader />} />
@@ -38,6 +41,8 @@ export function App() {
           <Route exact path="/alquiler/:typeID" element={<GenerateHeader />} />
           <Route exact path="/cart" element={<GenerateHeader />} />
           <Route exact path="/preAuth" element={<GenerateHeader />} />
+          <Route exact path="/buyProgress" element={<GenerateHeader />} />
+          <Route exact path="/setDate" element={<GenerateHeader />} />
         </Routes>
         <Routes>
           <Route exact path="/" element={<Home />} />
@@ -48,18 +53,18 @@ export function App() {
           
           <Route path="/buyProgress" element={<UserForm />} />
           <Route path="/setDate" element={<Calendar />} />
-          <Route path="/infoBuyer" element={<InfoBuyer />} />
-          <Route path="/bought" element={<Bought />} />
+          {/* <Route path="/infoBuyer" element={<InfoBuyer />} />
+          <Route path="/bought" element={<Bought />} /> */}
 
 
           <Route path="/listProducts/:productsSearch" element={<ListProducts />} />
           <Route path="/alquiler/:typeID" element={<Alquiler />} />
           {/* Posible enlace para tipo de producto */}
-          <Route path='/cart' element={<Cart />} />
+          {/* <Route path='/cart' element={<Cart />} /> */}
 
           {/* Tema usuario */}
           <Route path='/preAuth' element={<PreAuth />} />
-          <Route path='/login' element={<Login />} />
+          <Route path='/login/*' element={<Login />} />
           <Route path='/register' element={<Register />} />
 
           {/* Parte de usuario, no se puede acceder sin loguearse */}

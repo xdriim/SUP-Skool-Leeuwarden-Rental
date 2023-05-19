@@ -29,11 +29,11 @@ export function ProductCard({ product }) {
         }} 
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
-          <Card.Img variant="top" className="productImage" src={product.imgUrl} />
+          <Card.Img variant="top" className="productImage" src={'http://monet.cat:8080/image/'+product.images[0]} style={{ minHeight: '25vh' }}/>
           <Card.Body>
-            <Card.Title className={cardStyle.title}>{product.name}</Card.Title>
+            <Card.Title className={cardStyle.title} style={{ fontFamily: 'Montserrat' }}>{product.name}</Card.Title>
             <div className='d-flex justify-content-between'>
-              <p>{t("productCard.tran1")} <span className={cardStyle.negrita}>{product.price}€</span></p>
+              <p style={{ fontFamily: 'Montserrat' }}>{t("productCard.tran1")} <span className={cardStyle.negrita} style={{ fontFamily: 'Montserrat' }}>{product.price}€</span></p>
             </div>
           </Card.Body>
         </Card>

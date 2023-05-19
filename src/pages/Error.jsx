@@ -21,8 +21,8 @@ export function Error() {
                 <Image src={error} style={{ width: '60%' }}></Image>
               </Col>
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                <p>{t("error.tran1")}</p>
-                <Button onClick={volverInicio} style={{ backgroundColor: '#305090', color: '#DEEDFF' }}>  {t("error.tran2")}</Button>
+                <p style={{ fontFamily: 'Montserrat' }}>{t("error.tran1")}</p>
+                <Button onClick={volverInicio} style={{ backgroundColor: '#305090', color: '#DEEDFF', fontFamily: 'Montserrat' }}>  {t("error.tran2")}</Button>
               </Col>
           </Row>
         </Container>

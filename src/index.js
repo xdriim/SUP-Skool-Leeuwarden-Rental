@@ -3,7 +3,7 @@ import "./css/style.css";
 import { App } from "./router/App";
 import { createRoot } from 'react-dom/client';
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 
 // Translation
 import './i18n';
@@ -15,10 +15,10 @@ const container = document.getElementById('root');
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
   <React.StrictMode>
-   <Router>
+   <BrowserRouter>
       <main>
           <App />
       </main>
-    </Router>
+    </BrowserRouter>
   </React.StrictMode>
   );

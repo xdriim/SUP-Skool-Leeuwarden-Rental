@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 
 // Toast
 import { toast } from 'react-toastify';
@@ -22,11 +23,21 @@ export function LanguageSwitcher() {
     }
   })
 
+  let location = useLocation();
+
+    const bgHeader = () =>{
+        if(location.pathname.startsWith('/alquiler')){
+            return true
+        }else{
+            return false
+        }
+    } 
+
   return (
-      <select onChange={onChangeLanguage}>
-        <option value="es" className="lang">ES</option>
-        <option value="en" className="lang">EN</option>
-        <option value="nl" className="lang">NL</option>
+      <select onChange={onChangeLanguage} style={{ fontFamily: 'Montserrat', border: 'none', backgroundColor: bgHeader() ? '#DEEDFF' : 'white' }}>
+        <option value="es" className="lang" style={{ fontFamily: 'Montserrat' }}>ES</option>
+        <option value="en" className="lang" style={{ fontFamily: 'Montserrat' }}>EN</option>
+        <option value="nl" className="lang" style={{ fontFamily: 'Montserrat' }}>NL</option>
       </select>
   );
   

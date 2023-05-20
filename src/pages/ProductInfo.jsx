@@ -39,7 +39,7 @@ export function ProductInfo() {
             console.error('Error fetching product:', error);
             setProduct(null);
           });
-      }, []);
+      }, [productId]);
 
     
     console.log(product);
@@ -51,34 +51,36 @@ export function ProductInfo() {
     }
 
     useEffect(() => {
-        const storedCart = localStorage.getItem('cart');
+        const storedCart = sessionStorage.getItem('cart');
         if (storedCart) {
           setCart(JSON.parse(storedCart));
-          console.log(cart);
         }
       }, []);
       
+      const [error, setError] = useState('');
     
       const addToCart = () => {
         // Verificar si el producto ya está en el carrito
         const isProductInCart = cart.find((item) => item.productId === product.productId);
       
         if (isProductInCart) {
-          // El producto ya está en el carrito, realizar alguna acción o mostrar un mensaje de error
-          console.log('El producto ya está en el carrito');
+          // El producto ya está en el carrito, mostrar mensaje de error durante 5 segundos
+          setError('El producto ya está en el carrito');
+          setTimeout(() => {
+            setError('');
+          }, 5000);
           return;
         }
       
         // Agregar el producto al carrito
         const updatedCart = [...cart, product];
         setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        sessionStorage.setItem('cart', JSON.stringify(updatedCart));
+        navigate('/setDate');
       };
-      
 
       const bookNow = () => {
         addToCart();
-        navigate('/setDate');
       };
 
     return (
@@ -114,10 +116,15 @@ export function ProductInfo() {
                         {/* <Button style={{ background: 'transparent', color: '#AFAFAF', fontFamily: 'Montserrat' }} className="mr-2" onClick={addToCart}>
                             <FontAwesomeIcon icon={faShoppingCart} /> Add to cart
                         </Button> */}
-                        <Button style={{ background: '#DEEDFF', color: '#305090', fontWeight: 'bold', fontFamily: 'Montserrat' }} onClick={bookNow}>
+                        <Button style={{ background: '#DEEDFF', color: '#305090', fontWeight: 'bold', fontFamily: 'Montserrat' }} className='rounded' onClick={bookNow}>
                             Book now
                         </Button>
                     </ButtonGroup>
+                    {error && (
+                          <p id="error" style={{ display: 'block', color: 'red', fontWeight: 'bold' }}>
+                            {error}
+                          </p>
+                        )}
                     </div>
                     <div>
                         <p style={{ fontFamily: 'Montserrat' }}><b style={{ fontFamily: 'Montserrat' }}>Buy </b>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ducimus nulla accusantium alias sint natus esse itaque tenetur maiores, mollitia omnis ipsa. Modi sit ducimus vero non delectus molestias dignissimos.</p>

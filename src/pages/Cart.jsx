@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button, Form, ProgressBar } from 'react-bootstrap';
+import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -9,12 +9,12 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 export function Cart({ nextStep }) {
+  const { t } = useTranslation("global");
   const navigate = useNavigate();
-
 
   const [cart, setCart] = useState([]);
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
+    const storedCart = sessionStorage.getItem('cart');
     if (storedCart) {
       setCart(JSON.parse(storedCart));
       console.log(cart);
@@ -32,10 +32,10 @@ export function Cart({ nextStep }) {
   const removeFromCart = (productId) => {
     const updatedCart = cart.filter((product) => product.productId !== productId);
     setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    sessionStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
-  const comprar = event => {
+  const comprar = () => {
     nextStep()
   };
 

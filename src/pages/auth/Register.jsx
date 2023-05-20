@@ -6,8 +6,6 @@ import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate  } from "react-router-dom";
 // Translation
 import { useTranslation } from 'react-i18next';
-//Validació formulari
-import { Formik, ErrorMessage, Field } from 'formik';
 
 
 export function Register() {
@@ -25,7 +23,7 @@ export function Register() {
     const email = formData.get('email');
   
   // Obtener los productos de la carta
-  const storedCart = localStorage.getItem('cart');
+  //const storedCart = localStorage.getItem('cart');
 
     fetch('http://monet.cat:8080/user/signup', {
       method: 'POST',
@@ -35,12 +33,8 @@ export function Register() {
       .then(data => {
         if (data.rc === 0) {
           setLoggedIn(true);
-          if(storedCart){
             // Guardar los productos de la carta en el localStorage junto con el email del usuario
-            localStorage.setItem('cart', JSON.stringify({ email, isLoggedIn , storedCart }));
-          }else{
-            localStorage.setItem('cart', JSON.stringify({ email, isLoggedIn }));
-          }
+            sessionStorage.setItem('user', JSON.stringify({ email, isLoggedIn }));
           navigate('/');
         } else {
           const error = document.getElementById('error');

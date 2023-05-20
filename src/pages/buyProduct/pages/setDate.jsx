@@ -1,5 +1,5 @@
 import { TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import { Select, MenuItem } from "@material-ui/core";
 import { set } from "lodash";
@@ -21,6 +21,11 @@ const chunk = (array, size) => {
 
 export const Calendar = () => {
   const today = new Date();
+  const todayNumber = today.getDate();
+  const currentMonthIndex = today.getMonth();
+  const currentYearValue = today.getFullYear();
+
+  console.log(todayNumber);
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
 
@@ -57,55 +62,57 @@ export const Calendar = () => {
   
   const weeks = chunk(daysWithExtendedBlanks, 7);
 
-  const handleNextMonth = () => {
-    if (currentMonth === 11) {
-      setCurrentMonth(0);
-      setCurrentYear(currentYear + 1);
-    } else {
-      setCurrentMonth(currentMonth + 1);
+  // Información producto
+  const [cart, setCart] = useState([]);
+  
+  useEffect(() => {
+    const storedCart = sessionStorage.getItem('cart');
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
     }
-  };
+  }, []);
 
-  const handlePrevMonth = () => {
-    if (currentMonth === 0) {
-      setCurrentMonth(11);
-      setCurrentYear(currentYear - 1);
-    } else {
-      setCurrentMonth(currentMonth - 1);
-    }
-  };
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
+  const [stock, setStock] = useState(0);
+  const [availableHours, setAvailableHours] = useState([]);
   
   return (
     <Container className="mt-5">
       <Row className="text-center">
         <Col>
-          <Button onClick={handlePrevMonth} className="w-25">{"<"}</Button>
-        </Col>
-        <Col>
           <Select
             value={currentMonth}
             onChange={(event) => setCurrentMonth(event.target.value)}
           >
-            {months.map((month, index) => (
-              <MenuItem key={month} value={index}>
-                {month}
-              </MenuItem>
-            ))}
+            {months.map((month, index) => {
+              if (currentYear === currentYearValue && index < currentMonthIndex) {
+                return null; // Deshabilitar meses anteriores al mes actual
+              }
+              return (
+                <MenuItem key={month} value={index}>
+                  {month}
+                </MenuItem>
+              );
+              })}
           </Select>
           <Select
             value={currentYear}
             onChange={(event) => setCurrentYear(event.target.value)}
           >
-            {years.map((year) => (
-              <MenuItem key={year} value={year}>
-                {year}
-              </MenuItem>
-            ))}
+            {years.map((year) => {
+              if (year < currentYearValue) {
+                return null; // Deshabilitar años anteriores al año actual
+              }
+              return (
+                <MenuItem key={year} value={year}>
+                  {year}
+                </MenuItem>
+              );
+              })}
           </Select>
-
-        </Col>
-        <Col>
-          <Button onClick={handleNextMonth} className="w-25">{">"}</Button>
         </Col>
       </Row>
       <Table>
@@ -119,27 +126,53 @@ export const Calendar = () => {
         <TableBody>
           {weeks.map((week, weekIndex) => (
             <TableRow key={`week-${weekIndex}`}>
-              {week.map((day, dayIndex) => (
-                <TableCell key={`day-${dayIndex}`} onClick={(event) => setSelectedDay(day)}>
+              {week.map((day, dayIndex) => {
+                const isToday = day === todayNumber && currentMonth === currentMonthIndex && currentYear === currentYearValue;
+                const isPreviousDay = currentYear === currentYearValue && currentMonth === currentMonthIndex && day < todayNumber;
+                const isSelected = day === selectedDay;
+                const circleStyle = {
+                  borderRadius: '50%',
+                  fontWeight: isToday || isSelected ? 'bold' : 'normal',
+                  fontSize: isToday ? '32px' : '16px',
+                  width: '24px',
+                  height: '24px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  cursor: isPreviousDay ? 'default' : 'pointer', // Deshabilitar el cursor en días anteriores al día actual
+                  border: isPreviousDay ? '3px solid #808080' : isSelected ? '3px solid #1DFA75' : 'transparent', // Borde gris en días anteriores al día actual
+                  backgroundColor: isPreviousDay ? '#e0e0e0' : isSelected ? 'rgba(29, 250, 117, 0.5)' : 'transparent', // Fondo gris transparente en días anteriores al día actual y verde transparente en días seleccionados
+                  justifyContent: 'center'
+                };
+                return (
+                <TableCell key={`day-${dayIndex}`} onClick={(event) => {
+                  if (!isPreviousDay) {
+                    setSelectedDay(day);
+                  }
+                }}>
                   {day > 0 && day <= daysInMonth ? (
-                    <>
-                      {day}
-                      {day === selectedDay && (
-                        <div style={{ backgroundColor: 'red' }}>
-                          <div>*</div>
-                        </div>
-                      )}
-                    </>
+                    <p style={circleStyle}>
+                    {day}
+                  </p>
                   ) : (
                     <div className="blank"></div>
                   )}
                 </TableCell>
-              ))}
+              )}
+              )}
             </TableRow>
           ))}
         </TableBody>
       </Table>
+      <div>
+        <p>Stock: {stock}</p>
+        <p>Horas disponibles: {availableHours.join(', ')}</p>
+      </div>
     </Container>
   );
 };
 
+// {day === todayNumber && (
+//   <div style={{ backgroundColor: 'red' }}>
+//     <div>*</div>
+//   </div>
+// )}

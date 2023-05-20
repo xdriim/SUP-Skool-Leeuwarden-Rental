@@ -1,11 +1,9 @@
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import perfilImg from './../../../assets/img/usuario.png'
-import { useState } from 'react';
-import { get } from './../../../utils/httpClient';
+import { useState, useEffect } from 'react';
 
 import json from './../../../utils/sup.json';
 
@@ -14,7 +12,7 @@ export function Historial() {
     const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate(-1);
+    navigate('/');
   }
 
   // Recoger información según usuario
@@ -67,15 +65,15 @@ export function Historial() {
                         </Card.Body>
                       </Card>
 
-                      <Button className='mb-2 w-50'>
-                        <Link to={'/datos'} className='text-light text-decoration-none w-100'>Datos</Link>
-                      </Button>
-                      <Button className='mb-2 w-50'>
-                        <Link to={'/reservas'} className='text-light text-decoration-none'>Reservas</Link>
-                      </Button>
-                      <Button className='w-50'>
-                        <Link to={'/historial'} className='text-light text-decoration-none'>Historial</Link>
-                      </Button>
+                      <Link to={'/datos'} className='text-light text-decoration-none w-100'>
+                        <Button className='mb-2 w-50'>Datos</Button>
+                      </Link>
+                      <Link to={'/reservas'} className='text-light text-decoration-none'>
+                        <Button className='mb-2 w-50'>Reservas</Button>
+                      </Link>
+                      <Link to={'/historial'} className='text-light text-decoration-none'>
+                        <Button className='w-50'>Historial</Button>
+                      </Link>
                     </Col>
                   </Row>
                 </Col>
@@ -84,7 +82,7 @@ export function Historial() {
                     <h1>HISTORIAL ALQUILER</h1>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} className='border p-3'>
                       <Row>
-                        {historial}
+                        {/* {historial} */}
                       </Row>
                     </Col>
                     

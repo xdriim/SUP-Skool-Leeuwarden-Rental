@@ -35,26 +35,23 @@ export function GenerateHeader() {
     const [isLoggedIn, setLoggedIn] = useState(false);
     const [email, setEmail] = useState('');
 
-    function checkCartElementExists(elementKey) {
-        const storedCart = localStorage.getItem('cart');
-        if (storedCart) {
-          const parsedCart = JSON.parse(storedCart);
-          return elementKey in parsedCart;
-        }
-        return false;
-      }
 
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart');
-    if (storedCart) {
-        if(checkCartElementExists('isLoggedIn')){
-            setLoggedIn(true);
-            const parsedCart = JSON.parse(storedCart);
-            const name = parsedCart.email.split('@')[0];
-            setEmail(name);
-        }
+    const storedUser = sessionStorage.getItem('user');
+    if (storedUser) {
+        setLoggedIn(true);
+        const parsedCart = JSON.parse(storedUser);
+        const name = parsedCart.email.split('@')[0];
+        setEmail(name);
     }
   }, []);
+
+  const handleLinkClick = (event) => {
+    if (isLoggedIn) {
+      event.preventDefault();
+      window.location.href = '/datos';
+    }
+  };
 
 
     return(
@@ -86,7 +83,8 @@ export function GenerateHeader() {
                         {isLoggedIn && (
                             <div style={{ lineHeight: '40px' }}>Bienvenido, {email}</div>
                             )}
-                        <Nav.Link href="/preauth">
+
+                        <Nav.Link href="/preauth" onClick={handleLinkClick}>
                             <FontAwesomeIcon icon={faUser} />
                         </Nav.Link>
                         <Nav.Link href="/buyProgress">

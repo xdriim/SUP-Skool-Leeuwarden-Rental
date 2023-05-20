@@ -1,21 +1,45 @@
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
+import { Link, useAsyncError, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import perfilImg from './../../../assets/img/usuario.png'
-import { useState } from 'react';
-import { get } from './../../../utils/httpClient';
+import { useState, useEffect } from 'react';
 
 export function Datos() {
   // get('/user/login/');
     const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate(-1);
+    navigate('/');
   }
 
-  
+    const [isLoggedIn, setLoggedIn] = useState(false);
+    const [userData, setUserData] = useState(null);
+    const [idU, setIdU] = useState();
+
+  useEffect(() => {
+    const storedUser = sessionStorage.getItem('user');
+    if (storedUser) {
+        setLoggedIn(true);
+        const parsedCart = JSON.parse(storedUser);
+        // Tendria que recoger el id, pero!!!! Nunca lo he pasado
+        setIdU(2);
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('http://monet.cat:8080/user/'+idU);
+        const data = await response.json();
+        setUserData(data.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [idU]);
 
   // Recoger información que tiene el usuario actual
   const [nombre, setNombre] = useState('');
@@ -41,8 +65,8 @@ export function Datos() {
                 <Col xs={4} sm={4} md={4} lg={4} xl={4}>
                   <Row>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                      <Button className='mb-5' style={{ backgroundColor: 'transaparent' }}>
-                          <FontAwesomeIcon icon={faLeftLong} onClick={handleGoBack} />
+                      <Button className='mb-5' style={{ backgroundColor: 'transaparent' }} onClick={handleGoBack}>
+                          <FontAwesomeIcon icon={faLeftLong}  />
                       </Button>
                     </Col>
                     <Col xs={12} sm={12} md={12} lg={12} xl={12} className='d-flex flex-column'>
@@ -53,15 +77,21 @@ export function Datos() {
                         </Card.Body>
                       </Card>
 
-                      <Button className='mb-2 w-50'>
-                        <Link to={'/datos'} className='text-light text-decoration-none w-100'>Datos</Link>
-                      </Button>
-                      <Button className='mb-2 w-50'>
-                        <Link to={'/reservas'} className='text-light text-decoration-none'>Reservas</Link>
-                      </Button>
-                      <Button className='w-50'>
-                        <Link to={'/historial'} className='text-light text-decoration-none'>Historial</Link>
-                      </Button>
+                      <Link to={'/datos'} className='text-light text-decoration-none w-100'>
+                        <Button className='mb-2 w-50'>
+                          Datos
+                        </Button>
+                      </Link>
+                      <Link to={'/reservas'} className='text-light text-decoration-none'>
+                        <Button className='mb-2 w-50'>
+                          Reservas
+                        </Button>
+                      </Link>
+                      <Link to={'/historial'} className='text-light text-decoration-none'>
+                        <Button className='w-50'>
+                          Historial
+                        </Button>
+                      </Link>
                     </Col>
                   </Row>
                 </Col>
@@ -85,7 +115,7 @@ export function Datos() {
                             </Form.Group>
                         </Col>
                         <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                          <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end'>
+                          <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end' disabled>
                               Guardar
                           </Button>
                         </Col>
@@ -116,7 +146,7 @@ export function Datos() {
                               </Form.Group>
                           </Col>
                           <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                            <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end'>
+                            <Button type="submit" style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='d-flex float-end' disabled>
                                   Guardar cambios
                             </Button>
                           </Col>

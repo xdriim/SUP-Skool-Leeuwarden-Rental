@@ -28,7 +28,7 @@ export function Login() {
     const email = formData.get('email');
   
   // Obtener los productos de la carta
-  const storedCart = localStorage.getItem('cart');
+  //const storedCart = localStorage.getItem('cart');
 
     fetch('http://monet.cat:8080/user/login', {
       method: 'POST',
@@ -38,12 +38,8 @@ export function Login() {
       .then(data => {
         if (data.rc === 0) {
           setLoggedIn(true);
-          if(storedCart){
             // Guardar los productos de la carta en el localStorage junto con el email del usuario
-            localStorage.setItem('cart', JSON.stringify({ email, isLoggedIn , storedCart }));
-          }else{
-            localStorage.setItem('cart', JSON.stringify({ email, isLoggedIn }));
-          }
+            sessionStorage.setItem('user', JSON.stringify({ email, isLoggedIn }));
           navigate('/');
         } else {
           const error = document.getElementById('error');

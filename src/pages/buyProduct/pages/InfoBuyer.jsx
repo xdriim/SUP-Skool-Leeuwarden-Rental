@@ -1,19 +1,23 @@
 import { Container, Row, Col, Form, Button, ProgressBar } from 'react-bootstrap';
 import { useState } from 'react';
 
-export function InfoBuyer() {
+export function InfoBuyer({ nextStep }) {
   const [nombre, setNombre] = useState('');
   const [correo, setCorreo] = useState('');
-  const [numero, setNumero] = useState('');
-  const [asunto, setAsunto] = useState('');
-  const [mensaje, setMensaje] = useState('');
+  const [telefono, setTelefono] = useState('');
+  const [comentario, setComentario] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
     
     // Aquí puedes agregar tu lógica para enviar la información de inicio de sesión al servidor
     // LocalStorage.setItem('user', JSON.stringify());
-    
+
+
+    // Antes de nextStep---> reserva realizada   IR A PAGO POR MOLLIE
+    if(false){
+      nextStep();
+    }
   };
   
     return (
@@ -30,16 +34,12 @@ export function InfoBuyer() {
                   <Form.Control type="email" placeholder="Correo" value={correo} onChange={e => setCorreo(e.target.value)} />
               </Form.Group>
 
-              <Form.Group controlId="formBasicNumero" className='mb-4'>
-                  <Form.Control type="number" placeholder="Numero" value={numero} onChange={e => setNumero(e.target.value)} />
+              <Form.Group controlId="formBasicTelefono" className='mb-4'>
+                  <Form.Control type="number" placeholder="Teléfono" value={telefono} onChange={e => setTelefono(e.target.value)} />
               </Form.Group>
 
-              <Form.Group controlId="formBasicAsunto" className='mb-4'>
-                  <Form.Control type="text" placeholder="Asunto" value={asunto} onChange={e => setAsunto(e.target.value)} />
-              </Form.Group>
-
-              <Form.Group controlId="formBasicMensaje" className='mb-4'>
-                  <Form.Control as="textarea" rows={3} placeholder="Mensaje" value={mensaje} onChange={e => setMensaje(e.target.value)} />
+              <Form.Group controlId="formBasicComentario" className='mb-4'>
+                  <Form.Control as="textarea" rows={3} placeholder="Comentario" value={comentario} onChange={e => setComentario(e.target.value)} />
               </Form.Group>
 
               <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>

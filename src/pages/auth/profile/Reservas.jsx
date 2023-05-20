@@ -1,22 +1,24 @@
 import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-import { Route, Routes } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLeftLong } from '@fortawesome/free-solid-svg-icons';
 import perfilImg from './../../../assets/img/usuario.png'
-import { useState } from 'react';
-import { get } from './../../../utils/httpClient';
+import { useState, useEffect } from 'react';
 
-import json from './../../../utils/sup.json';
 import { filtratMes, filtratAny, meses, anyos } from './../../../utils/filter';
 
+// Spinner de carga
+import { DotLoader } from "react-spinners";
+
 export function Reservas() {
-  // get('/user/login/');
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   function handleGoBack() {
-    navigate(-1);
+    navigate('/');
   }
+
+
 
   // Búsqueda de una reserva en concreto, pero paso nombre y recojo id
   const [busqueda, setBusqueda] = useState();
@@ -41,53 +43,99 @@ export function Reservas() {
       </option>
     ));
   
+  
+    const [orders, setOrders] = useState([]);
+    const [combinedData, setCombinedData] = useState([]);
+
+    useEffect(() => {
+      fetch('http://monet.cat:8080/order?user_id=2')
+        .then(response => response.json())
+        .then((orders) => {
+          setOrders(orders.data)
+      })
+      .catch((error) => console.log(error));
+      }, []);
+
+      useEffect(() => {
+        const fetchProductInfo = async () => {
+          try {
+            const productPromises = orders.map((order) => {
+              const productId = order.productId;
+              const productPromise = fetch(`http://monet.cat:8080/product/${productId}`).then(response => response.json());
+              return Promise.all([order, productPromise]);
+            });
+    
+            const productResponses = await Promise.all(productPromises);
+            const combinedData = productResponses.map(([order, product]) => {
+              return {
+                ...order,
+                product: product.data
+              };
+            });
+    
+            setCombinedData(combinedData);
+            setIsLoading(false);
+          } catch (error) {
+            console.error('Error fetching product information:', error);
+            setCombinedData([]);
+          }
+        };
+    
+        if (orders.length > 0) {
+          fetchProductInfo();
+        }
+      }, [orders]);
+
+      console.log(combinedData);
 
   // Lógica de filtro
   // Lógica de búsqueda
 
 
-  const results = !busqueda ? json : json.filter( (dato) => dato.name.toLocaleLowerCase().includes(busqueda.toLocaleLowerCase()) );
+  //const results = !busqueda ? products : products.filter( (dato) => dato.name.toLocaleLowerCase().includes(busqueda.toLocaleLowerCase()) );
 
   console.log(mes+' '+anyo);
 
-  const filtratMesBusqueda = results.filter(item => filtratAny(anyo).includes(item));
+  //const filtratMesBusqueda = results.filter(item => filtratAny(anyo).includes(item));
 
-  console.log("Filtra complet");
-  console.log(filtratMesBusqueda);
+  //console.log(filtratMesBusqueda);
 
-  console.log(json.filter(item => filtratAny(anyo).includes(item) && filtratMes(mes).includes(item) ));
+  //console.log(json.filter(item => filtratAny(anyo).includes(item) && filtratMes(mes).includes(item) ));
 
-  const reservas = filtratMesBusqueda.map((reserva, index) => (
-          <Col xs={12} sm={12} md={12} lg={12} xl={12} key={index} value={reserva.name} className='mb-4' >
+  const reservas = isLoading ? (
+    <DotLoader color={"#80ACE0"} loading={true}  size={25} />
+    ) : (
+  combinedData.map((reserva, index) => (
+          <Col xs={12} sm={12} md={12} lg={12} xl={12} key={index} value={reserva.product.name} className='mb-4' >
             <Row>
               <Col xs={3} sm={3} md={3} lg={3} xl={3}>
                 <h4>Nº reserva</h4>
-                <p>3465</p>
+                <p>{ reserva.orderId }</p>
               </Col>
               <Col xs={9} sm={9} md={9} lg={9} xl={9}>
                 <h4>Fecha reserva</h4>
-                <p>23/07/22</p>
+                <p>{ reserva.orderDate }</p>
               </Col>
             </Row>
             <Row>
               <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                <img src={ reserva.imgUrl } alt={ reserva.name } style={{ width: "12vh" }} />
+                <img src={ 'http://monet.cat:8080/image/'+reserva.product.images[0] } alt={ reserva.product.name } style={{ width: "12vh" }} />
               </Col>
               <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                <p>{ reserva.name }</p>
-                <p>{ reserva.type } - 1 estudiante</p>
+                <p>{ reserva.product.name }</p>
+                <p>from { reserva.product.price }€</p>
               </Col>
               <Col xs={4} sm={4} md={4} lg={4} xl={4}>
-                <Button style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='mb-2'>
+                <Button style={{ backgroundColor: 'transparent', color: '#E03A40', borderColor: '#E03A40' }} className='mb-2' disabled>
                   Cancelar reserva
                 </Button>
-                <Button style={{ backgroundColor: '#E03A40', color: 'white', borderColor: '#E03A40' }}>
+                <Button style={{ backgroundColor: '#E03A40', color: 'white', borderColor: '#E03A40' }} disabled>
                   Reservar de nuevo
                 </Button>
               </Col>
             </Row>
           </Col>
-  ));
+  )));
 
 
     return (
@@ -109,15 +157,15 @@ export function Reservas() {
                         </Card.Body>
                       </Card>
 
-                      <Button className='mb-2 w-50'>
-                        <Link to={'/datos'} className='text-light text-decoration-none'>Datos</Link>
-                      </Button>
-                      <Button className='mb-2 w-50'>
-                        <Link to={'/reservas'} className='text-light text-decoration-none'>Reservas</Link>
-                      </Button>
-                      <Button className='w-50'>
-                        <Link to={'/historial'} className='text-light text-decoration-none'>Historial</Link>
-                      </Button>
+                      <Link to={'/datos'} className='text-light text-decoration-none w-100'>
+                        <Button className='mb-2 w-50'>Datos</Button>
+                      </Link>
+                      <Link to={'/reservas'} className='text-light text-decoration-none'>
+                        <Button className='mb-2 w-50'>Reservas</Button>
+                      </Link>
+                      <Link to={'/historial'} className='text-light text-decoration-none'>
+                        <Button className='w-50'>Historial</Button>
+                      </Link>
                     </Col>
                   </Row>
                 </Col>

@@ -1,6 +1,7 @@
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { Mapa } from './../components/Mapa';
 import { useState } from 'react';
+import emailjs from 'emailjs-com';
 
 // Translation
 import { useTranslation } from 'react-i18next';
@@ -14,13 +15,31 @@ export function Contact() {
   const [asunto, setAsunto] = useState('');
   const [mensaje, setMensaje] = useState('');
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    
-    // Aquí puedes agregar tu lógica para enviar la información de inicio de sesión al servidor
-    // LocalStorage.setItem('user', JSON.parse())
-    
+
+    // Initialize EmailJS with your API Key
+    emailjs.init('HviXax_HKwlmqCrzC');
+
+    // Send email using EmailJS
+    emailjs.sendForm('service_cqysnre', 'template_16klf5a', event.target, 'HviXax_HKwlmqCrzC')
+      .then((response) => {
+        console.log('Email sent successfully!', response);
+        // Reset form fields
+        setNombre('');
+        setCorreo('');
+        setNumero('');
+        setAsunto('');
+        setMensaje('');
+      })
+      .catch((error) => {
+        console.error('Email sending failed:', error);
+        // Handle error, e.g., show an error message to the user
+      });
   };
+  
+  
+  
     return (
       <Container className='my-5'>
         <Row>
@@ -50,23 +69,23 @@ export function Contact() {
           <h4 className='text-center fw-bold mb-4' style={{ fontFamily: 'Montserrat' }}>{t("contact.tran7")}</h4>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="formBasicNombre" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
-                  <Form.Control type="text" placeholder={t("contact.tran8")} value={nombre} onChange={e => setNombre(e.target.value)} />
+                  <Form.Control type="text" name='nombre' placeholder={t("contact.tran8")} value={nombre} onChange={e => setNombre(e.target.value)} />
               </Form.Group>
 
               <Form.Group controlId="formBasicCorreo" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
-                  <Form.Control type="email" placeholder={t("contact.tran9")} value={correo} onChange={e => setCorreo(e.target.value)} />
+                  <Form.Control type="email" placeholder={t("contact.tran9")} name='correo' value={correo} onChange={e => setCorreo(e.target.value)} />
               </Form.Group>
 
               <Form.Group controlId="formBasicNumero" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
-                  <Form.Control type="number" placeholder={t("contact.tran10")} value={numero} onChange={e => setNumero(e.target.value)} />
+                  <Form.Control type="number" placeholder={t("contact.tran10")} name='numero' value={numero} onChange={e => setNumero(e.target.value)} />
               </Form.Group>
 
               <Form.Group controlId="formBasicAsunto" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
-                  <Form.Control type="text" placeholder={t("contact.tran11")} value={asunto} onChange={e => setAsunto(e.target.value)} />
+                  <Form.Control type="text" placeholder={t("contact.tran11")} name='asunto' value={asunto} onChange={e => setAsunto(e.target.value)} />
               </Form.Group>
 
               <Form.Group controlId="formBasicMensaje" className='mb-4' style={{ fontFamily: 'Montserrat' }}>
-                  <Form.Control as="textarea" rows={3} placeholder={t("contact.tran12")} value={mensaje} onChange={e => setMensaje(e.target.value)} />
+                  <Form.Control as="textarea" rows={3} placeholder={t("contact.tran12")} name='mensaje' value={mensaje} onChange={e => setMensaje(e.target.value)} />
               </Form.Group>
 
               <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%', fontFamily: 'Montserrat' }}>

@@ -32,7 +32,7 @@ export function Alquiler() {
   const { typeID } = useParams();
   
   const [type, setType] = useState(typeID);
-  const [filter, setFilter] = useState('Sort by: default');
+  const [filter, setFilter] = useState('Ordenar por defecto');
   // Type puede venir definido anteriormente en el desplegable de alquiler
 
   function changeType(e){
@@ -68,9 +68,9 @@ export function Alquiler() {
           break;
       }
 
-      if (filter === 'Price: low to high') {
+      if (filter === 'Precio: bajo a alto') {
         filteredProducts.sort((a, b) => a.price - b.price);
-      } else if (filter === 'Price: high to low'){
+      } else if (filter === 'Precio: alto a bajo'){
         filteredProducts.sort((a, b) => b.price - a.price);
       }
 
@@ -82,13 +82,13 @@ export function Alquiler() {
         <Row>
           <Col xs={12} sm={12} md={12} lg={12} xl={12} className="d-flex justify-content-between mb-3">
             <Row>
-              <Col>
+              <Col xs={12} sm={12} md={4} lg={4} xl={4}>
                 <Button id="bSUP" onClick={(e)=> changeType(e)} style={{ background: type === 'SUP' ? '#80ACE0' : 'white', borderColor:  '#80ACE0', fontWeight: type === 'SUP' ? 'bold' : 'normal', color: '#305090', fontFamily: 'Montserrat'}}>SUP</Button>
               </Col>
-              <Col>
+              <Col xs={12} sm={12} md={5} lg={5} xl={5}>
                 <Button id="bCanoes" onClick={(e)=> changeType(e)} style={{ background: type === 'Canoes' ? '#80ACE0' : 'white', borderColor: '#80ACE0', fontWeight: type === 'Canoes' ? 'bold' : 'normal', color: '#305090', fontFamily: 'Montserrat' }}>Canoes</Button>
               </Col>
-              <Col>
+              <Col xs={12} sm={12} md={3} lg={3} xl={3}>
                 <Button id="bBonos" onClick={(e)=> changeType(e)} style={{ background: type === 'Bonos' ? '#80ACE0' : 'white', borderColor: '#80ACE0', fontWeight: type === 'Bonos' ? 'bold' : 'normal', color: '#305090', fontFamily: 'Montserrat' }}>Bonos</Button>
               </Col>
             </Row>
@@ -101,9 +101,9 @@ export function Alquiler() {
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => setFilter('Sort by: Default')} style={{ fontFamily: 'Montserrat' }}>Sort by: Default</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFilter('Price: low to high')} style={{ fontFamily: 'Montserrat' }}>Price: low to high</Dropdown.Item>
-                    <Dropdown.Item onClick={() => setFilter('Price: high to low')} style={{ fontFamily: 'Montserrat' }}>Price: high to low</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('Ordenar por defecto')} style={{ fontFamily: 'Montserrat' }}>Ordenar por defecto</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('Precio: bajo a alto')} style={{ fontFamily: 'Montserrat' }}>Precio: bajo a alto</Dropdown.Item>
+                    <Dropdown.Item onClick={() => setFilter('Precio: alto a bajo')} style={{ fontFamily: 'Montserrat' }}>Precio: alto a bajo</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
               </Col>

@@ -5,7 +5,7 @@ import {Cart} from "./../Cart";
 import {Bought} from "./pages/Bought";
 
 import {MultiStepProgressBar} from "./../../components/MultiStepProgressBar";
-import { Row, Col, Container, Button } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 export const UserForm = () => {
   //For manageing state of multi steps Form

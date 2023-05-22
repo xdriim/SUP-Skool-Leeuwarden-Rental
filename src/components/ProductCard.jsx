@@ -19,7 +19,7 @@ export function ProductCard({ product }) {
   }
 
   return (
-    <Col xs={12} sm={12} md={6} lg={6} xl={3} className="mb-4">
+    <Col xs={12} sm={6} md={6} lg={4} xl={3} className="mb-4 d-flex justify-content-center">
       <Link to={`/productInfo/${product.productId}`} style={{ color: '#305090', textDecoration: 'none' }}>
         <Card className="sliderSup" style={{ 
           width: '16rem',

@@ -8,17 +8,16 @@ export function InfoBuyer({ nextStep }) {
   const [comentario, setComentario] = useState('');
 
   const handleSubmit = event => {
-    event.preventDefault();
     
-    // Aquí puedes agregar tu lógica para enviar la información de inicio de sesión al servidor
-    // LocalStorage.setItem('user', JSON.stringify());
 
 
     // Antes de nextStep---> reserva realizada   IR A PAGO POR MOLLIE
-    if(false){
+    
+    window.open('https://www.mollie.com/checkout/select-method/CY4tfkxtSA')
       nextStep();
-    }
+    
   };
+
   
     return (
       <Container className='my-5'>
@@ -43,7 +42,7 @@ export function InfoBuyer({ nextStep }) {
               </Form.Group>
 
               <Button type="submit" style={{ backgroundColor: '#305090', color: '#DEEDFF', width: '100%' }}>
-                  Enviar
+                  Ir a pagar
               </Button>
             </Form>
           </Col>

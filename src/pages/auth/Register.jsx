@@ -33,8 +33,9 @@ export function Register() {
       .then(data => {
         if (data.rc === 0) {
           setLoggedIn(true);
+          const idUser = data.data.userId;
             // Guardar los productos de la carta en el localStorage junto con el email del usuario
-            sessionStorage.setItem('user', JSON.stringify({ email, isLoggedIn }));
+            sessionStorage.setItem('user', JSON.stringify({ email, isLoggedIn, idUser }));
           navigate('/');
         } else {
           const error = document.getElementById('error');

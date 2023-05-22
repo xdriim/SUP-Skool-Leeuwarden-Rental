@@ -2,7 +2,8 @@ import { TableHead, TableRow, TableCell, TableBody } from "@material-ui/core";
 import { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Table } from 'react-bootstrap';
 import { Select, MenuItem } from "@material-ui/core";
-import { set } from "lodash";
+import { useLocation } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const WEEKDAYS = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 
@@ -20,6 +21,10 @@ const chunk = (array, size) => {
 
 
 export const Calendar = () => {
+  const location = useLocation();
+  const data = location.state;
+  const navigate = useNavigate();
+
   const today = new Date();
   const todayNumber = today.getDate();
   const currentMonthIndex = today.getMonth();
@@ -35,20 +40,7 @@ export const Calendar = () => {
 
   // En el cuerpo de la función Calendar:
   const years = Array.from({ length: 10 }, (_, index) => currentYear - 5 + index);
-  const months = [
-    "Enero",
-    "Febrero",
-    "Marzo",
-    "Abril",
-    "Mayo",
-    "Junio",
-    "Julio",
-    "Agosto",
-    "Septiembre",
-    "Octubre",
-    "Noviembre",
-    "Diciembre",
-  ];
+  const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
 
@@ -65,22 +57,80 @@ export const Calendar = () => {
   // Información producto
   const [cart, setCart] = useState([]);
   
-  useEffect(() => {
-    const storedCart = sessionStorage.getItem('cart');
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
 
   const [stock, setStock] = useState(0);
   const [availableHours, setAvailableHours] = useState([]);
+  const [hourSelected, setHourSelected] = useState('');
+
+  const formattedNumber = (number) => {
+    return number.toString().padStart(2, '0');
+  };
   
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      // Construir la URL con los valores actuales
+      const url = `http://monet.cat:8080/product/${data['product'].productId}/availability?from_date=${selected[2]}-${formattedNumber(selected[1])}-${formattedNumber(selected[0])}&to_date=${selected[2]}-${formattedNumber(selected[1])}-${formattedNumber(selected[0])}&stock_needed=${stock}`;
+
+      // Realizar la solicitud HTTP utilizando fetch
+      const response = await fetch(url);
+
+      // Verificar el estado de la respuesta
+      if (response.ok) {
+        // Obtener los datos de la respuesta
+        const data = await response.json();
+        
+        // Manejar los datos recibidos
+        console.log('Datos del servidor:', data);
+        setAvailableHours(data.data[`${selected[2]}-${formattedNumber(selected[1])}-${formattedNumber(selected[0])}`]);
+        
+        // Aquí puedes realizar cualquier acción adicional con los datos recibidos, como actualizar el estado de tu componente con la respuesta del servidor.
+      } else {
+        // Manejar errores en la respuesta
+        console.error('Error en la solicitud:', response.status);
+      }
+    } catch (error) {
+      // Manejar cualquier error de la solicitud
+      console.error('Error en la solicitud:', error);
+    }
+  };
+
+  const addCart = () => {
+    if(stock > 1){
+      if (data) {
+        // Actualizar precio a según las medias horas de más seleccionadas
+      // const updatedProduct = { ...data };
+      // updatedProduct.product.price += 2;
+  
+        const storedCart = sessionStorage.getItem('cart');
+        if (storedCart) {
+          const parsedCart = JSON.parse(storedCart);
+          const updatedCart = [...parsedCart, data];
+          setCart(updatedCart);
+          sessionStorage.setItem('cart', JSON.stringify(updatedCart));
+        } else {
+          const updatedCart = [data];
+          setCart(updatedCart);
+          sessionStorage.setItem('cart', JSON.stringify(updatedCart));
+        }
+        //
+        navigate('/buyProgress');
+      }
+    }
+  }
+
+  const handleStockChange = (event) => {
+    const value = parseInt(event.target.value, 10);
+    if (value > 0) {
+      setStock(value);
+    }
+  };
+
   return (
-    <Container className="mt-5">
+    <Container className="my-5">
       <Row className="text-center">
         <Col>
           <Select
@@ -163,16 +213,38 @@ export const Calendar = () => {
           ))}
         </TableBody>
       </Table>
-      <div>
-        <p>Stock: {stock}</p>
-        <p>Horas disponibles: {availableHours.join(', ')}</p>
-      </div>
+      <Row>
+        <Col>
+        <input
+        type="number"
+        value={stock}
+        placeholder="Stock"
+        onChange={handleStockChange}
+        min="1"
+      />
+      {stock <= 0 && (
+        <p style={{ color: "red" }}>El stock debe ser mayor a 0</p>
+      )}
+        </Col>
+        <Col>
+        <Row>
+        <label htmlFor="availableHoursSelect">Horas disponibles:</label>
+        
+        <Select
+            value={hourSelected}
+            onChange={(event) => setHourSelected(event.target.value)}
+          >
+            {availableHours.map((hourObj, index) => (
+            <MenuItem key={index} value={hourObj.first}>
+                  {hourObj.first}
+                </MenuItem>
+          ))}
+          </Select>
+        </Row>
+        
+        </Col>
+      </Row>
+      <Button onClick={addCart}>Reservar</Button>
     </Container>
   );
 };
-
-// {day === todayNumber && (
-//   <div style={{ backgroundColor: 'red' }}>
-//     <div>*</div>
-//   </div>
-// )}

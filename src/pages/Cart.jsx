@@ -13,13 +13,23 @@ export function Cart({ nextStep }) {
   const navigate = useNavigate();
 
   const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+
   useEffect(() => {
     const storedCart = sessionStorage.getItem('cart');
     if (storedCart) {
-      setCart(JSON.parse(storedCart));
-      console.log(cart);
+      const parsedCart = JSON.parse(storedCart);
+      setCart(parsedCart);
     }
   }, []);
+
+  useEffect(() => {
+    // Actualizar el precio total
+    const totalPrice = cart.reduce((acc, item) => acc + item.product.stock * item.product.price, 0);
+    setTotalPrice(totalPrice);
+  
+  }, [cart]);
+  
 
   // Aquí debe de ir toda la lógica de carrito de vaciar cesta y quitar producto
 
@@ -30,13 +40,13 @@ export function Cart({ nextStep }) {
   // };
 
   const removeFromCart = (productId) => {
-    const updatedCart = cart.filter((product) => product.productId !== productId);
+    const updatedCart = cart.filter((item) => item.product.productId !== productId);
     setCart(updatedCart);
     sessionStorage.setItem('cart', JSON.stringify(updatedCart));
   };
 
   const comprar = () => {
-    nextStep()
+    nextStep();
   };
 
   return (
@@ -45,7 +55,9 @@ export function Cart({ nextStep }) {
           <Col xs={6} sm={6} md={6} lg={6} xl={6} style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)' }} className='p-4'>
             <h3>Cesta</h3>
             <Row>
-            {cart.map((product) => {
+            {cart && cart.length > 0 ? (
+              cart.map((item) => {
+                const product = item.product;
               return (
                   <Col xs={12} sm={12} md={12} lg={12} xl={12} className='mb-3' key={product.productId}>
                     <Row>
@@ -56,7 +68,7 @@ export function Cart({ nextStep }) {
                           </Col>
                           <Col xs={12} sm={12} md={12} lg={6} xl={6}>
                             <p className='fw-bold'>{product.name}</p>
-                            <p className=''>{product.duration}</p>
+                            <p className=''>1h 30min</p>
                             <p className=''>from {product.price}€</p>
                           </Col>
                         </Row>
@@ -68,8 +80,12 @@ export function Cart({ nextStep }) {
                       </Col>
                     </Row>
                   </Col>
+              );
+                  })
+              ) : (
+                <p>No hay productos en el carrito</p>
               )
-            })}
+            }
             </Row>
           </Col>
           <Col xs={5} sm={5} md={5} lg={5} xl={5} style={{ border: '1px solid #80ACE0', borderRadius: '8px', boxShadow: '2px 2px 5px rgba(0, 0, 0, 0.3)', height: 'max-content' }} className='mx-auto p-4'>
@@ -81,12 +97,12 @@ export function Cart({ nextStep }) {
                     <p className='fw-bold'>Total</p>
                   </Col>
                   <Col xs={12} sm={12} md={12} lg={4} xl={4} className='ms-auto'>
-                    <p style={{ color: '#E03A40' }}> precioTotal €</p>
+                    <p style={{ color: '#E03A40' }}>{totalPrice} €</p>
                   </Col>
                 </Row>
               </Col>
               <Col xs={12} sm={12} md={12} lg={12} xl={12}>
-                <Button style={{ color: 'white', backgroundColor: '#E03A40', border: 'none', width: '100%' }} onClick={comprar}>Completar reserva</Button>
+                <Button disabled={cart.length === 0} style={{ color: 'white', backgroundColor: '#E03A40', border: 'none', width: '100%' }} onClick={comprar}>Completar reserva</Button>
               </Col>
             </Row>
           </Col>

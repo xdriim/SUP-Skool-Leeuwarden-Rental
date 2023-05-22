@@ -72,11 +72,11 @@ export function ProductInfo() {
           return;
         }
       
-        // Agregar el producto al carrito
-        const updatedCart = [...cart, product];
-        setCart(updatedCart);
-        sessionStorage.setItem('cart', JSON.stringify(updatedCart));
-        navigate('/setDate');
+        // // Agregar el producto al carrito
+        // const updatedCart = [...cart, product];
+        // setCart(updatedCart);
+        // sessionStorage.setItem('cart', JSON.stringify(updatedCart));
+        navigate('/setDate', { state: { product } });
       };
 
       const bookNow = () => {

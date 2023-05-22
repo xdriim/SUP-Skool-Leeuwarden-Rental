@@ -38,8 +38,9 @@ export function Login() {
       .then(data => {
         if (data.rc === 0) {
           setLoggedIn(true);
-            // Guardar los productos de la carta en el localStorage junto con el email del usuario
-            sessionStorage.setItem('user', JSON.stringify({ email, isLoggedIn }));
+            // Guardar en el localStorage junto con el email del usuario
+            const idUser = data.data.userId;
+            sessionStorage.setItem('user', JSON.stringify({ email, isLoggedIn, idUser }));
           navigate('/');
         } else {
           const error = document.getElementById('error');

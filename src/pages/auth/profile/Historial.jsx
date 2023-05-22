@@ -24,7 +24,8 @@ export function Historial() {
   const [orders, setOrders] = useState([]);
   const [combinedData, setCombinedData] = useState([]);
 
-  const [userInfo, setUserInfo] = useState();
+  const [userInfo, setUserInfo] = useState(null);
+  const [user, setUser] = useState(null);
   const [id, setId] = useState();
 
   useEffect(() => {
@@ -40,6 +41,20 @@ export function Historial() {
       setId(userInfo.idUser);
     }
   }, [userInfo]);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await fetch('http://monet.cat:8080/user/' + id);
+        const data = await response.json();
+        setUser(data.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, [id]);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -139,7 +154,7 @@ export function Historial() {
                 <Card className='w-50 mb-4'>
                   <Card.Img variant="top" src={perfilImg} />
                   <Card.Body className='text-center'>
-                    <Card.Title>Usuari</Card.Title>
+                    <Card.Title>{user?.name}</Card.Title>
                   </Card.Body>
                 </Card>
 

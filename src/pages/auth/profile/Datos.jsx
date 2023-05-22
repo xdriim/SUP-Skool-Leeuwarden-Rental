@@ -21,9 +21,15 @@ export function Datos() {
     if (storedUser) {
       setLoggedIn(true);
       const parsedCart = JSON.parse(storedUser);
-      setIdU(2); // Actualiza el ID de usuario según tus necesidades
+      setUserData(parsedCart);
     }
   }, []);
+
+  useEffect(() => {
+    if (userData && userData.idUser) {
+      setIdU(userData.idUser);
+    }
+  }, [userData]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -53,6 +59,10 @@ export function Datos() {
     // Realiza las validaciones necesarias y cambia la contraseña
   };
 
+  function show(){
+    console.log(userData);
+  }
+
   return (
     <div className='my-5'>
       <Container>
@@ -68,7 +78,7 @@ export function Datos() {
                 <Card className='w-100'>
                   <Card.Img variant="top" src={perfilImg} />
                   <Card.Body className='text-center'>
-                    <Card.Title>Usuario</Card.Title>
+                    <Card.Title>{userData?.name}</Card.Title>
                   </Card.Body>
                 </Card>
               </Col>
@@ -105,7 +115,7 @@ export function Datos() {
                   <Col xs={12} md={6}>
                     <Form.Group controlId="formBasicNombre" className='mb-4'>
                       <Form.Label>Nombre</Form.Label>
-                      <Form.Control type="text" placeholder="Nombre" value={nombre} onChange={e => setNombre(e.target.value)} />
+                      <Form.Control type="text" placeholder={userData?.name} value={nombre} onChange={e => setNombre(e.target.value)} />
                     </Form.Group>
                   </Col>
                   <Col xs={12} md={6}>

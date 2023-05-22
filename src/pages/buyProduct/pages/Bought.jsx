@@ -23,7 +23,7 @@ export function Bought() {
           <h1 className="fw-bold">Reserva realizada exitosamente
           <FontAwesomeIcon icon={faCheck} style={{ color: '#1DFA75' }}></FontAwesomeIcon>
           </h1>
-          <h4>Revisa tu correo electrónico para ver los detalles</h4>
+          {/* <h4>Revisa tu correo electrónico para ver los detalles</h4> */}
         </Col>
         <ToastContainer></ToastContainer>
       </Container>

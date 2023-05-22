@@ -110,14 +110,14 @@ export function ProductInfo() {
                     
                 </Col>
                 <Col xs={6} sm={6} md={6} lg={6} xl={6}>
-                    <h2 style={{ color: 'grey', marginBottom: '30px', width: 'fit-content', fontFamily: 'Montserrat' }}>from {product.price}€</h2>
+                    <h2 style={{ color: 'grey', marginBottom: '30px', width: 'fit-content', fontFamily: 'Montserrat' }}>desde {product.price}€</h2>
                     <div className='my-3'>
                     <ButtonGroup style={{ borderColor: '#305090', width: '100%' }}>
                         {/* <Button style={{ background: 'transparent', color: '#AFAFAF', fontFamily: 'Montserrat' }} className="mr-2" onClick={addToCart}>
                             <FontAwesomeIcon icon={faShoppingCart} /> Add to cart
                         </Button> */}
                         <Button style={{ background: '#DEEDFF', color: '#305090', fontWeight: 'bold', fontFamily: 'Montserrat' }} className='rounded' onClick={bookNow}>
-                            Book now
+                            Reserva ahora
                         </Button>
                     </ButtonGroup>
                     {error && (

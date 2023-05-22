@@ -13,7 +13,7 @@ export function InfoBuyer({ nextStep }) {
 
     // Antes de nextStep---> reserva realizada   IR A PAGO POR MOLLIE
     
-    window.open('https://www.mollie.com/checkout/select-method/CY4tfkxtSA')
+    window.open('https://www.mollie.com/checkout/select-method/XEbNV6xASP')
       nextStep();
     
   };
